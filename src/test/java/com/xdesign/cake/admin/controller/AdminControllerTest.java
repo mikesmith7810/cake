@@ -1,5 +1,6 @@
 package com.xdesign.cake.admin.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xdesign.cake.db.repository.CakeRepository;
 import com.xdesign.cake.domain.Cake;
+import com.xdesign.cake.helper.RandomWordRetriever;
 
 @WebMvcTest(AdminController.class)
 class AdminControllerTest {
@@ -33,6 +35,9 @@ class AdminControllerTest {
 
 	@MockBean
 	private CakeRepository cakeRepository;
+
+	@MockBean
+	private RandomWordRetriever randomWordRetriever;
 
 	@Test
 	void shouldRetrieveAllCakes() throws Exception {
@@ -72,6 +77,36 @@ class AdminControllerTest {
 				.andExpect( jsonPath( "$.cakes[1].name" ).value( "Cream" ) );
 
 		verify( cakeRepository, times( 1 ) ).save( newCake );
+	}
+
+	@Test
+	void shouldCreateXNumberOfRandomCakes() throws Exception {
+
+		final int numberOfCakesToBeCreated = 3;
+
+		final List<String> randomWords = new ArrayList<String>();
+		randomWords.add( "Robot" );
+		randomWords.add( "Wood" );
+		randomWords.add( "Mud" );
+
+		when( randomWordRetriever.getRandomWords( numberOfCakesToBeCreated ) )
+				.thenReturn( randomWords );
+
+		final List<Cake> cakes = new ArrayList<Cake>();
+		cakes.add( Cake.builder().id( 1 ).name( "Robot" ).build() );
+		cakes.add( Cake.builder().id( 2 ).name( "Wood" ).build() );
+		cakes.add( Cake.builder().id( 3 ).name( "Mud" ).build() );
+		when( cakeRepository.findAll() ).thenReturn( cakes );
+
+		this.mockMvc
+				.perform( post( "/admin/cake/magiccreate/" + numberOfCakesToBeCreated )
+						.contentType( MediaType.APPLICATION_JSON )
+						.accept( MediaType.APPLICATION_JSON ) )
+				.andDo( print() )
+				.andExpect( status().isOk() );
+
+		verify( randomWordRetriever, times( 1 ) ).getRandomWords( numberOfCakesToBeCreated );
+		verify( cakeRepository, times( numberOfCakesToBeCreated ) ).save( any() );
 	}
 
 	@Test
