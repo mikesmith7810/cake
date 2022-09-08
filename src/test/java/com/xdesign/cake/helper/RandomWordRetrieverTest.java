@@ -13,20 +13,21 @@ import org.junit.jupiter.api.TestInstance;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RandomWordRetrieverTest {
 
-    RandomWordRetriever randomWordRetriever;
+	RandomWordRetriever randomWordRetriever;
 
-    @BeforeAll
-    void setup(){
-        randomWordRetriever = new RandomWordRetriever();
-    }
+	@BeforeAll
+	void setup() {
+		randomWordRetriever = new RandomWordRetriever();
+	}
 
-    @Test
-    void shouldRetrieveRandomWordsFromResourcesFile() throws IOException {
+	@Test
+	void shouldRetrieveRandomWordsFromResourcesFile() throws IOException {
 
-       final List<String> randomWords = randomWordRetriever.getRandomWords(3);
+		final List<String> randomWords = randomWordRetriever.getRandomWords( 3 );
 
-       assertThat(randomWords).size().isEqualTo(3);
-       assertThat(randomWords.stream().distinct().collect(Collectors.toList()).size()).isEqualTo(3);
-    }
+		assertThat( randomWords ).size().isEqualTo( 3 );
+		assertThat( randomWords.stream().distinct().collect( Collectors.toList() ).size() )
+				.isEqualTo( 3 );
+	}
 
 }
