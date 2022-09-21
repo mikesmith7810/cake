@@ -6,11 +6,9 @@ import java.util.Random;
 
 import org.springframework.util.StringUtils;
 
-import com.slack.api.Slack;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
-import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -31,9 +29,6 @@ public class SendCakeCommand extends MessageExtractingCommand {
 	protected Response doRespond( final String message, final SlashCommandRequest request,
 			final SlashCommandContext context ) throws SlackApiException, IOException {
 
-		log.info( "Message : " + message );
-		log.info( "Request : " + request.getRequestBodyAsString() );
-		log.info( "Channel :" + context.getChannelId() );
 
 		final List<Cake> availableCakes = cakeRepository.findAll();
 		final Random random = new Random();
@@ -41,22 +36,15 @@ public class SendCakeCommand extends MessageExtractingCommand {
 				.capitalize( availableCakes.get( random.nextInt( availableCakes.size() ) )
 						.getName() ) + "' Cake!! :tada:";
 
-		Slack slack = Slack.getInstance();
-		MethodsClient methods = slack
-				.methods( "xoxb-2213511230-4096670683063-Q3THYqe54EqLXpCWx4j3jWYE" );
+		//		Slack slack = Slack.getInstance();
+		//		MethodsClient methods = slack
+		//				.methods( "xoxb-2213511230-4096670683063-Q3THYqe54EqLXpCWx4j3jWYE" );
 
-		log.info( "Message posting " );
-		// Build a request object
-		ChatPostMessageRequest apiRequest = ChatPostMessageRequest.builder()
+ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
 				//.channel( "D043YU7KEHW" ) // Use a channel ID `C1234567` is preferable
 				.channel( "#fanduel-teinders" ) // Use a channel ID `C1234567` is preferable
 				.text( cakeMessage )
-				.build();
-
-		log.info( "Message posted " );
-
-		// Get a response as a Java object
-		ChatPostMessageResponse response = methods.chatPostMessage( apiRequest );
+				.build() );
 
 		return context.ack( res -> res.responseType( "in_channel" ).text( cakeMessage ) );
 	}
