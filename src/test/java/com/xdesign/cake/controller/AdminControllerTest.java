@@ -1,4 +1,4 @@
-package com.xdesign.cake.admin.controller;
+package com.xdesign.cake.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;

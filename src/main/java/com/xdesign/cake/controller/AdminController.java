@@ -1,4 +1,4 @@
-package com.xdesign.cake.admin.controller;
+package com.xdesign.cake.controller;
 
 import java.io.IOException;
 import java.util.Optional;
