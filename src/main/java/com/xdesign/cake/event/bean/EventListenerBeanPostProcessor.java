@@ -13,12 +13,15 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.handler.BoltEventHandler;
 import com.slack.api.model.event.Event;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * {@link BeanPostProcessor} which will automatically register any
  * {@link BoltEventHandler} {@link org.springframework.context.annotation.Bean
  * Beans} with this {@link App Bolt App}.
  */
 @Component
+@Slf4j
 public class EventListenerBeanPostProcessor implements BeanPostProcessor {
 
 	private final App app;
@@ -41,6 +44,7 @@ public class EventListenerBeanPostProcessor implements BeanPostProcessor {
 
 		final Class<? extends Event> eventType = getEventType( beanClass );
 		if ( eventType != null ) {
+			log.info( "Registering event : " + eventType.getName() );
 			this.app.event( eventType, (BoltEventHandler) bean );
 		}
 		return bean;
