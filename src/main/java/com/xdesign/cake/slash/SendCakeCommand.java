@@ -38,7 +38,7 @@ public class SendCakeCommand extends MessageExtractingCommand {
 						.getName() ) + "' Cake!! :tada:";
 
 		Slack slack = Slack.getInstance();
-		MethodsClient methods = slack.methods( "OAUTH TOKEN HERE" );
+		MethodsClient methods = slack.methods( System.getenv( "SLACK_OAUTH_TOKEN" ) );
 
 		ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
 				.channel( "#caketest" )

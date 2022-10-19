@@ -34,13 +34,18 @@ Slack API App Console - https://api.slack.com/apps
 
 
 - MySQL DB
-    - `Start MySQL from Mac Preferences > MySQL (I find i have to stop and restart the instance to allow me to connect)`
 
+`Start MySQL from Mac Preferences > MySQL (I find i have to stop and restart the instance to allow me to connect)`
 
 - Register Slack Apps OAUTH Token as an environment varoable (until we get somthing better sorted out)
 
+`export SLACK_OAUTH_TOKEN=<slack oauth token`>
 
-- Cake Springboot Application - `./gradlew bootRun`
+`echo $SLACK_OAUTH_TOKEN` (check its set properly)
+
+- Cake Springboot Application - (in the same terminal where you set the slack oauth token env variable)
+
+`./gradlew bootRun`
 
 
 
