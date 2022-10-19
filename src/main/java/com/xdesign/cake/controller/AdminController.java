@@ -50,9 +50,6 @@ public class AdminController {
 	@PostMapping("/admin/cake/magiccreate/{numberOfCakes}")
 	public CakeTray addCake( @PathVariable("numberOfCakes") final int numberOfCakes )
 			throws IOException {
-
-		//create a strema here which selects a random set of words from cvs file
-		//then for each one, save a cake
 		randomWordRetriever.getRandomWords( numberOfCakes )
 				.stream()
 				.forEach( randomWord -> cakeRepository
