@@ -6,9 +6,11 @@ import java.util.Random;
 
 import org.springframework.util.StringUtils;
 
+import com.slack.api.Slack;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -29,20 +31,17 @@ public class SendCakeCommand extends MessageExtractingCommand {
 	protected Response doRespond( final String message, final SlashCommandRequest request,
 			final SlashCommandContext context ) throws SlackApiException, IOException {
 
-
 		final List<Cake> availableCakes = cakeRepository.findAll();
 		final Random random = new Random();
 		final String cakeMessage = "Have a random '" + StringUtils
 				.capitalize( availableCakes.get( random.nextInt( availableCakes.size() ) )
 						.getName() ) + "' Cake!! :tada:";
 
-		//		Slack slack = Slack.getInstance();
-		//		MethodsClient methods = slack
-		//				.methods( "xoxb-2213511230-4096670683063-Q3THYqe54EqLXpCWx4j3jWYE" );
+		Slack slack = Slack.getInstance();
+		MethodsClient methods = slack.methods( "OAUTH TOKEN HERE" );
 
-ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
-				//.channel( "D043YU7KEHW" ) // Use a channel ID `C1234567` is preferable
-				.channel( "#fanduel-teinders" ) // Use a channel ID `C1234567` is preferable
+		ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
+				.channel( "#caketest" )
 				.text( cakeMessage )
 				.build() );
 
