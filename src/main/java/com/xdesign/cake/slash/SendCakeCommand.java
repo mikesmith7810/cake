@@ -26,14 +26,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SendCakeCommand extends MessageExtractingCommand {
 
-	CakeRepository cakeRepository;
+	private CakeRepository cakeRepository;
 
 	protected Response doRespond( final String message, final SlashCommandRequest request,
 			final SlashCommandContext context ) throws SlackApiException, IOException {
 
 		final List<Cake> availableCakes = cakeRepository.findAll();
+
 		final Random random = new Random();
-		final String cakeMessage = "Have a random '" + StringUtils
+
+		final String cakeMessage = message + " Have a random '" + StringUtils
 				.capitalize( availableCakes.get( random.nextInt( availableCakes.size() ) )
 						.getName() ) + "' Cake!! :tada:";
 

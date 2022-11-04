@@ -6,6 +6,8 @@ Cake is a pet project for me (mike.smith@xdesign) to help with upskilling myslef
 
 ### **Architecture Running Locally**
 
+![Cake Architecture](/resources/CakeSlackArchitecture.jpg)
+
 Slack
 
 /\

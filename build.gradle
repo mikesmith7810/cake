@@ -25,6 +25,7 @@ dependencies {
 	implementation 'com.slack.api:bolt:1.23.0'
     implementation 'com.slack.api:bolt-servlet:1.10.0'
     implementation 'com.slack.api:bolt-jetty:1.10.0'
+	implementation 'com.google.guava:guava:31.1-jre'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
