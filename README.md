@@ -8,24 +8,6 @@ Cake is a pet project for me (mike.smith@xdesign) to help with upskilling myslef
 
 ![Cake Architecture](/resources/CakeSlackArchitecture.jpg)
 
-Slack
-
-/\
-
-Slack App (OAUTH Token given)
-
-(slash command etc registered with ngrok -
-
-https://663d-84-13-121-114.eu.ngrok.io/slack/events)
-
-/\
-
-NGROK Running Locally on port 3000
-
-/\
-
-Springboot Application running Bolt on port 3000
-
 ### **Useful Links**
 
 Slack API App Console - https://api.slack.com/apps
