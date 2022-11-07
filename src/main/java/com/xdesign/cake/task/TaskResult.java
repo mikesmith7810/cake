@@ -6,7 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class TaskResult {
-	final private int type;
+	final private String type;
 	final private String value;
 
 }

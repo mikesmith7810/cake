@@ -8,7 +8,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,9 +18,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xdesign.cake.task.FunctionalInterfaceType;
 import com.xdesign.cake.task.Task;
 import com.xdesign.cake.task.TaskResult;
-import com.xdesign.cake.task.TaskType;
 import com.xdesign.cake.teachers.FunctionalInterfaceTeacher;
 
 @WebMvcTest(FunctionalInterfacesController.class)
@@ -35,16 +36,18 @@ class FunctionalInterfacesControllerTest {
 		return new ObjectMapper().writeValueAsString( obj );
 	}
 
-	@Test
-	void shouldDelegateFunctionTaskToTeacher() throws Exception {
+	@ParameterizedTest
+	@EnumSource(FunctionalInterfaceType.class)
+	void shouldDelegateFunctionalInterfaceTaskToTeacher(
+			final FunctionalInterfaceType functionalInterfaceType ) throws Exception {
 
 		final Task functionTask = Task.builder()
-				.taskType( TaskType.Function )
+				.taskType( functionalInterfaceType.getValue() )
 				.parameter( "thisisatest" )
 				.build();
 
 		final TaskResult functionTaskResult = TaskResult.builder()
-				.type( TaskType.Function.getValue() )
+				.type( functionalInterfaceType.getValue() )
 				.value( "tsetasisiht" )
 				.build();
 
@@ -52,12 +55,12 @@ class FunctionalInterfacesControllerTest {
 				.thenReturn( functionTaskResult );
 
 		this.mockMvc
-				.perform( get( "/java/function/reverse" ).content( asJsonString( functionTask ) )
+				.perform( get( "/java/functionalinterface" ).content( asJsonString( functionTask ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
 				.andExpect( status().isOk() )
-				.andExpect( jsonPath( "$.type" ).value( TaskType.Function.getValue() ) )
+				.andExpect( jsonPath( "$.type" ).value( functionalInterfaceType.getValue() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
 		verify( functionalInterfaceTeacher, times( 1 ) ).runLearningMaterial( functionTask );
