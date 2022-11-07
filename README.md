@@ -55,5 +55,11 @@ Go to the 'caketest' slack channel and type -
 This should respond with a random cake from the database (don't omit the parameter mike as it will nullpointer at the
 moment)
 
+### Next Steps 07/11/2022
+
+- Add other functional interface examples
+- Return code of example to slack/postman
+- Modify functionalinterfaceteacher to handle different types of task - eg Function, Consumer, etc
+
 
 
