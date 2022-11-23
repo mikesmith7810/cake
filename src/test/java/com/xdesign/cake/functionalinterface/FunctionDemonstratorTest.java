@@ -12,17 +12,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class FunctionDemonstratorTest {
 
-    public FunctionDemonstrator functionDemonstrator;
+	public FunctionDemonstrator functionDemonstrator;
 
-    @BeforeAll
-    public void setup(){
-        functionDemonstrator = new FunctionDemonstrator();
-    }
+	@BeforeAll
+	public void setup() {
+		functionDemonstrator = new FunctionDemonstrator();
+	}
 
-    @Test
-    public void shouldReverseAString(){
-        String result = functionDemonstrator.demoFunction("example");
+	@Test
+	public void shouldReverseAString() {
+		String result = functionDemonstrator.demoFunction( "example" );
 
-        assertThat(result).isEqualTo("elpmaxe");
-    }
+		assertThat( result ).isEqualTo( "elpmaxe" );
+	}
 }
