@@ -42,12 +42,12 @@ class FunctionalInterfacesControllerTest {
 			final FunctionalInterfaceType functionalInterfaceType ) throws Exception {
 
 		final Task functionTask = Task.builder()
-				.taskType( functionalInterfaceType.getValue() )
+				.taskType( functionalInterfaceType )
 				.parameter( "thisisatest" )
 				.build();
 
 		final TaskResult functionTaskResult = TaskResult.builder()
-				.type( functionalInterfaceType.getValue() )
+				.type( functionalInterfaceType )
 				.value( "tsetasisiht" )
 				.build();
 
@@ -60,7 +60,7 @@ class FunctionalInterfacesControllerTest {
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
 				.andExpect( status().isOk() )
-				.andExpect( jsonPath( "$.type" ).value( functionalInterfaceType.getValue() ) )
+				.andExpect( jsonPath( "$.type" ).value( functionalInterfaceType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
 		verify( functionalInterfaceTeacher, times( 1 ) ).runLearningMaterial( functionTask );

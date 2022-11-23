@@ -6,6 +6,6 @@ import lombok.Data;
 @Builder
 @Data
 public class Task {
-	final private String taskType;
+	final private FunctionalInterfaceType taskType;
 	final private String parameter;
 }

@@ -8,6 +8,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.xdesign.cake.task.FunctionalInterfaceType;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
 public class FunctionalInterfaceTeacherTest {
@@ -21,7 +23,8 @@ public class FunctionalInterfaceTeacherTest {
 
     @Test
     void shouldUseFunctionToReverseString(){
-        final String result = functionalInterfacesTeacher.demoFunction("iamatest");
+		final String result = functionalInterfacesTeacher
+				.demoFunction( FunctionalInterfaceType.FUNCTION, "iamatest" );
 
         assertThat(result).isEqualTo("tsetamai");
     }
