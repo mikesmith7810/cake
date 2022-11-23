@@ -23,30 +23,30 @@ import com.xdesign.cake.domain.Cake;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class SendCakeCommandTest {
 
+	private SendCakeCommand sendCakeCommand;
 
-    private SendCakeCommand sendCakeCommand;
+	@Mock
+	SlashCommandRequest slashCommandRequest;
+	@Mock
+	SlashCommandContext slashCommandContext;
+	@Mock
+	CakeRepository cakeRepository;
 
-    @Mock
-    SlashCommandRequest slashCommandRequest;
-    @Mock
-    SlashCommandContext slashCommandContext;
-    @Mock
-    CakeRepository cakeRepository;
+	public static final String MESSAGE = "MESSAGE";
 
-    public static final String MESSAGE = "MESSAGE";
-
-    @BeforeEach
+	@BeforeEach
 	void setup() {
-		sendCakeCommand = new SendCakeCommand(cakeRepository);
+		sendCakeCommand = new SendCakeCommand( cakeRepository );
 	}
 
-    @Test
-    public void shouldRetrieveAllAvailableCakes() throws SlackApiException, IOException {
-        when(cakeRepository.findAll()).thenReturn(ImmutableList.of(Cake.builder().build(),Cake.builder().build()));
+	@Test
+	public void shouldRetrieveAllAvailableCakes() throws SlackApiException, IOException {
+		when( cakeRepository.findAll() )
+				.thenReturn( ImmutableList.of( Cake.builder().build(), Cake.builder().build() ) );
 
-        sendCakeCommand.doRespond(MESSAGE, slashCommandRequest,slashCommandContext);
+		sendCakeCommand.doRespond( MESSAGE, slashCommandRequest, slashCommandContext );
 
-        verify(cakeRepository).findAll();
-    }
+		verify( cakeRepository ).findAll();
+	}
 
 }

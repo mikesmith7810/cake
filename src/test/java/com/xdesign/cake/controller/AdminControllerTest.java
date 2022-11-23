@@ -67,8 +67,7 @@ class AdminControllerTest {
 		when( cakeRepository.findAll() ).thenReturn( cakes );
 
 		this.mockMvc
-				.perform( post( "/admin/cake" )
-						.content( asJsonString( newCake ) )
+				.perform( post( "/admin/cake" ).content( asJsonString( newCake ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )

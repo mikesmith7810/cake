@@ -5,5 +5,5 @@ public enum FunctionalInterfaceType {
 	CONSUMER,
 	PREDICATE,
 	SUPPLIER,
-	BIFUNCTION;
+	BIFUNCTION
 }

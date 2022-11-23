@@ -16,9 +16,10 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * {@link BeanPostProcessor} which will identify {@link org.springframework.context.annotation.Bean
- * Beans} with a {@link SlashCommand} annotation on them, and (if found) register the slash command
- * with this {@link App Bolt App}.
+ * {@link BeanPostProcessor} which will identify
+ * {@link org.springframework.context.annotation.Bean Beans} with a
+ * {@link SlashCommand} annotation on them, and (if found) register the slash
+ * command with this {@link App Bolt App}.
  */
 @Component
 @Data
@@ -31,7 +32,6 @@ public final class SlashCommandBeanPostProcessor implements BeanPostProcessor {
 	public Object postProcessAfterInitialization( final Object bean, final String beanName )
 			throws BeansException {
 
-
 		final Class<?> beanClass = AopUtils.getTargetClass( bean );
 		final SlashCommand ann = AnnotationUtils.findAnnotation( beanClass, SlashCommand.class );
 		if ( ann == null || !( bean instanceof SlashCommandHandler ) ) {
@@ -40,13 +40,14 @@ public final class SlashCommandBeanPostProcessor implements BeanPostProcessor {
 
 		final SlashCommandHandler schBean = (SlashCommandHandler) bean;
 
-		log.info("Processing slash command : " + beanName);
+		log.info( "Processing slash command : " + beanName );
 		if ( ann.isPattern() ) {
 			this.app.command( Pattern.compile( "/" + ann.value() ), schBean );
-			log.info("registering slash command : " + Pattern.compile( "/" + ann.value() ));
+			log.info( "registering slash command : " + Pattern.compile( "/" + ann.value() ) );
 		} else {
 			this.app.command( "/" + ann.value(), schBean );
-			log.info("registering slash command : " + "/" + ann.value() + " with bean : " + schBean.getClass().getName());
+			log.info( "registering slash command : " + "/" + ann
+					.value() + " with bean : " + schBean.getClass().getName() );
 		}
 
 		return bean;

@@ -21,7 +21,7 @@ public class FunctionDemonstratorTest {
 
 	@Test
 	public void shouldReverseAString() {
-		String result = functionDemonstrator.demoFunction( "example" );
+		final String result = functionDemonstrator.demoFunction( "example" );
 
 		assertThat( result ).isEqualTo( "elpmaxe" );
 	}

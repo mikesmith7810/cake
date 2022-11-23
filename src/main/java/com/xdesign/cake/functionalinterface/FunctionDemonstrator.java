@@ -2,7 +2,10 @@ package com.xdesign.cake.functionalinterface;
 
 import java.util.function.Function;
 
-public class FunctionDemonstrator implements FunctionalInterfaceDemonstrator {
+import org.springframework.stereotype.Component;
+
+@Component
+public class FunctionDemonstrator extends Demonstrator {
 	public String demoFunction( final String input ) {
 		Function<String, String> reverser = s -> {
 			StringBuilder stringBuilder = new StringBuilder( s );
@@ -12,5 +15,4 @@ public class FunctionDemonstrator implements FunctionalInterfaceDemonstrator {
 
 		return reverser.apply( input );
 	}
-
 }

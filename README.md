@@ -59,6 +59,10 @@ moment)
 
 - Add other functional interface examples
 - Return code of example to slack/postman
+- Add Optional examples
+- Add streams examples
+- One call to return list of available examples - could use annotations for this?
+- Other java 8 new things
 - Modify functionalinterfaceteacher to handle different types of task - eg Function, Consumer, etc
 
 
