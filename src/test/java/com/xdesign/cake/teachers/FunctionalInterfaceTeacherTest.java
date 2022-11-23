@@ -2,13 +2,11 @@ package com.xdesign.cake.teachers;
 
 import static org.mockito.Mockito.verify;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.google.common.collect.ImmutableList;
@@ -22,7 +20,6 @@ import com.xdesign.cake.task.FunctionalInterfaceType;
 @ExtendWith(MockitoExtension.class)
 public class FunctionalInterfaceTeacherTest {
 
-	@InjectMocks
 	FunctionalInterfaceTeacher functionalInterfacesTeacher;
 
 	@Mock
@@ -37,10 +34,12 @@ public class FunctionalInterfaceTeacherTest {
 	@Mock
 	SupplierDemonstrator supplierDemonstrator;
 
-	@BeforeAll
+	@BeforeEach
 	void setup() {
-		MockitoAnnotations.openMocks( this );
-		functionalInterfacesTeacher = new FunctionalInterfaceTeacher();
+		this.functionalInterfacesTeacher = new FunctionalInterfaceTeacher( functionDemonstrator,
+				consumerDemonstrator,
+				predicateDemonstrator,
+				supplierDemonstrator );
 	}
 
 	@Test

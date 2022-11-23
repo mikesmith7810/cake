@@ -2,7 +2,6 @@ package com.xdesign.cake.teachers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.functionalinterface.ConsumerDemonstrator;
@@ -16,19 +15,25 @@ import com.xdesign.cake.task.TaskResult;
 @Component
 public class FunctionalInterfaceTeacher {
 
-	@Autowired
-	private FunctionDemonstrator functionDemonstrator;
+	private final FunctionDemonstrator functionDemonstrator;
 
-	@Autowired
-	private ConsumerDemonstrator consumerDemonstrator;
+	private final ConsumerDemonstrator consumerDemonstrator;
 
-	@Autowired
-	private PredicateDemonstrator predicateDemonstrator;
+	private final PredicateDemonstrator predicateDemonstrator;
 
-	@Autowired
-	private SupplierDemonstrator supplierDemonstrator;
+	private final SupplierDemonstrator supplierDemonstrator;
 
 	public static final String TYPE_NOT_RECOGNISED = "Type not recognised";
+
+	public FunctionalInterfaceTeacher( final FunctionDemonstrator functionDemonstrator,
+			final ConsumerDemonstrator consumerDemonstrator,
+			final PredicateDemonstrator predicateDemonstrator,
+			final SupplierDemonstrator supplierDemonstrator ) {
+		this.functionDemonstrator = functionDemonstrator;
+		this.consumerDemonstrator = consumerDemonstrator;
+		this.predicateDemonstrator = predicateDemonstrator;
+		this.supplierDemonstrator = supplierDemonstrator;
+	}
 
 	public TaskResult runLearningMaterial( final Task functionTask ) {
 
