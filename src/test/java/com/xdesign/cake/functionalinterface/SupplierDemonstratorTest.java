@@ -2,29 +2,30 @@ package com.xdesign.cake.functionalinterface;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.google.common.collect.ImmutableList;
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
-public class FunctionDemonstratorTest {
+public class SupplierDemonstratorTest {
 
-	public FunctionDemonstrator functionDemonstrator;
+	private SupplierDemonstrator supplierDemonstrator;
 
 	@BeforeAll
 	public void setup() {
-		functionDemonstrator = new FunctionDemonstrator();
+		supplierDemonstrator = new SupplierDemonstrator();
 	}
 
 	@Test
-	public void shouldReverseAString() {
-		final String result = functionDemonstrator.demoFunction( ImmutableList.of( "example" ) );
+	public void shouldPrintSomeOutputToConsole() {
+		final String date = supplierDemonstrator.demoFunction();
 
-		assertThat( result ).isEqualTo( "elpmaxe" );
+		assertThat( date ).isEqualTo( LocalDate.now().format( DateTimeFormatter.ISO_LOCAL_DATE ) );
 	}
 }

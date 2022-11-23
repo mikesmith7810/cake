@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableList;
 import com.xdesign.cake.task.FunctionalInterfaceType;
 import com.xdesign.cake.task.Task;
 import com.xdesign.cake.task.TaskResult;
@@ -43,7 +44,7 @@ class FunctionalInterfacesControllerTest {
 
 		final Task functionTask = Task.builder()
 				.taskType( functionalInterfaceType )
-				.parameter( "thisisatest" )
+				.parameters( ImmutableList.of( "thisisatest" ) )
 				.build();
 
 		final TaskResult functionTaskResult = TaskResult.builder()

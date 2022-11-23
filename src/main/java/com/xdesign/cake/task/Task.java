@@ -1,5 +1,7 @@
 package com.xdesign.cake.task;
 
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -7,5 +9,5 @@ import lombok.Data;
 @Data
 public class Task {
 	final private FunctionalInterfaceType taskType;
-	final private String parameter;
+	final private List<String> parameters;
 }

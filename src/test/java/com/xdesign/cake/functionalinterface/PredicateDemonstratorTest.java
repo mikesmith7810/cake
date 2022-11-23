@@ -26,7 +26,7 @@ public class PredicateDemonstratorTest {
 	@Test
 	public void shouldCheckIfWordsStartsWithS() {
 
-		final boolean result = predicateDemonstrator.demoFunction( "Super" );
+		final boolean result = predicateDemonstrator.demoFunction( ImmutableList.of( "Super" ) );
 
 		assertThat( result ).isTrue();
 	}

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class PredicateDemonstrator extends Demonstrator {
 
-	public boolean demoFunction( final String word ) {
+	public boolean demoFunction( final List<String> word ) {
 		final Predicate<String> startsWithPredicate = w -> w.startsWith( "S" );
 
-		return startsWithPredicate.test( word );
+		return startsWithPredicate.test( word.get( 0 ) );
 	}
 
 	public List<String> demoFunction( final List<String> words, final String letter ) {

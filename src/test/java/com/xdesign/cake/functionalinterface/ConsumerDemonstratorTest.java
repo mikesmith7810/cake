@@ -11,6 +11,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.google.common.collect.ImmutableList;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
 public class ConsumerDemonstratorTest {
@@ -29,7 +31,7 @@ public class ConsumerDemonstratorTest {
 
 	@Test
 	public void shouldPrintSomeOutputToConsole() {
-		consumerDemonstrator.demoFunction( "Some interesting sentence" );
+		consumerDemonstrator.demoFunction( ImmutableList.of( "Some interesting sentence" ) );
 
 		assertThat( outputStreamCaptor.toString().trim() ).isEqualTo( "Some interesting sentence" );
 	}

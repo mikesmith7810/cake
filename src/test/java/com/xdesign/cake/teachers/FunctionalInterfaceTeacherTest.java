@@ -11,9 +11,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.google.common.collect.ImmutableList;
 import com.xdesign.cake.functionalinterface.ConsumerDemonstrator;
 import com.xdesign.cake.functionalinterface.FunctionDemonstrator;
 import com.xdesign.cake.functionalinterface.PredicateDemonstrator;
+import com.xdesign.cake.functionalinterface.SupplierDemonstrator;
 import com.xdesign.cake.task.FunctionalInterfaceType;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,6 +34,9 @@ public class FunctionalInterfaceTeacherTest {
 	@Mock
 	PredicateDemonstrator predicateDemonstrator;
 
+	@Mock
+	SupplierDemonstrator supplierDemonstrator;
+
 	@BeforeAll
 	void setup() {
 		MockitoAnnotations.openMocks( this );
@@ -41,23 +46,32 @@ public class FunctionalInterfaceTeacherTest {
 	@Test
 	void shouldUseFunctionToReverseString() {
 		final String result = functionalInterfacesTeacher
-				.demoFunction( FunctionalInterfaceType.FUNCTION, "iamatest" );
+				.demoFunction( FunctionalInterfaceType.FUNCTION, ImmutableList.of( "iamatest" ) );
 
-		verify( functionDemonstrator ).demoFunction( "iamatest" );
+		verify( functionDemonstrator ).demoFunction( ImmutableList.of( "iamatest" ) );
 	}
 
 	@Test
 	void shouldUseConsumerToPrintToConsole() {
-		functionalInterfacesTeacher.demoFunction( FunctionalInterfaceType.CONSUMER, "Hello World" );
+		functionalInterfacesTeacher.demoFunction( FunctionalInterfaceType.CONSUMER,
+				ImmutableList.of( "Hello World" ) );
 
-		verify( consumerDemonstrator ).demoFunction( "Hello World" );
+		verify( consumerDemonstrator ).demoFunction( ImmutableList.of( "Hello World" ) );
 	}
 
 	@Test
 	void shouldUsePredicateToCheckStringStartsWithLetter() {
 		final String result = functionalInterfacesTeacher
-				.demoFunction( FunctionalInterfaceType.PREDICATE, "Super" );
+				.demoFunction( FunctionalInterfaceType.PREDICATE, ImmutableList.of( "Super" ) );
 
-		verify( predicateDemonstrator ).demoFunction( "Super" );
+		verify( predicateDemonstrator ).demoFunction( ImmutableList.of( "Super" ) );
+	}
+
+	@Test
+	void shouldUseSupplierToGetTheCurrentDate() {
+		final String result = functionalInterfacesTeacher
+				.demoFunction( FunctionalInterfaceType.SUPPLIER, ImmutableList.of( "Super" ) );
+
+		verify( supplierDemonstrator ).demoFunction();
 	}
 }
