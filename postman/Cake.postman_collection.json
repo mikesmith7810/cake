@@ -51,6 +51,226 @@
 			"response": []
 		},
 		{
+			"name": "java learning function",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"taskType\": \"FUNCTION\",\n  \"parameters\": [\n    \"Raspberry\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/functionalinterface",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"functionalinterface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "java learning consumer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"taskType\": \"CONSUMER\",\n  \"parameters\": [\n    \"Hi There\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/functionalinterface",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"functionalinterface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "java learning supplier",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"taskType\": \"SUPPLIER\",\n  \"parameters\": [\n\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/functionalinterface",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"functionalinterface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "java learning predicate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"taskType\": \"PREDICATE\",\n  \"parameters\": [\n    \"Super\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/functionalinterface",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"functionalinterface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "java learning contents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/contents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"contents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get all cakes Copy",
 			"event": [
 				{
