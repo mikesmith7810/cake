@@ -56,7 +56,7 @@ class StreamsControllerTest {
 				.thenReturn( streamsTaskResult );
 
 		this.mockMvc
-				.perform( get( "/java/optional" ).content( asJsonString( streamsTask ) )
+				.perform( get( "/java/streams" ).content( asJsonString( streamsTask ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
