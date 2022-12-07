@@ -16,6 +16,8 @@ Slack API App Console - https://api.slack.com/apps
 
 - Ngrok -  `ngrok http 3000`
 
+Grab the ngrok url (eg https://a70c-84-13-121-114.ngrok.io) and update this for the slash and event (under Event
+Subscriptions and Slash Commands )
 
 - MySQL DB
 
@@ -27,6 +29,7 @@ randomwords.txt'
 `/admin/cake/magiccreate/{numberOfCakes}`
 
 - Register Slack Apps OAUTH Token as an environment variable (until we get somthing better sorted out)
+- https://api.slack.com/apps - Generate a new token here - it will begin with 'xoxe.xoxp'
 
 `export SLACK_OAUTH_TOKEN=<slack oauth token>`
 
@@ -55,9 +58,16 @@ Go to the 'caketest' slack channel and type -
 This should respond with a random cake from the database (don't omit the parameter mike as it will nullpointer at the
 moment)
 
-### Next Steps 23/11/2022
+### Next Steps 07/12/2022
 
-- Git Hub location retrieval
+- Integrate response properly with Slack
+- Work out what this is doing
+- ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
+  .channel( "#caketest" )
+  .text(result.getValue() )
+  .build() );
+
+  	return context.ack( res -> res.responseType( "in_channel" ).text( result.getValue()+ result.getType()  ) );
 
 
 
