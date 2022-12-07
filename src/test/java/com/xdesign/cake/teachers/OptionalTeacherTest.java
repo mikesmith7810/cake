@@ -27,18 +27,18 @@ public class OptionalTeacherTest {
 
 	@BeforeEach
 	public void setup() {
-		this.optionalTeacher = new OptionalTeacher( creationDemonstrator);
+		this.optionalTeacher = new OptionalTeacher( creationDemonstrator );
 	}
 
 	@Test
 	public void shouldCallDemonstrator() {
-		when(creationDemonstrator.demoFunction(ImmutableList.of( "iamatest" ))).thenReturn(Optional.of("iamatest"));
+		when( creationDemonstrator.demoFunction( ImmutableList.of( "iamatest" ) ) )
+				.thenReturn( Optional.of( "iamatest" ) );
 
-		final String result = optionalTeacher
-				.demoFunction( OptionalType.CREATION, ImmutableList.of( "iamatest" ) );
+		final String result = optionalTeacher.demoFunction( OptionalType.CREATION,
+				ImmutableList.of( "iamatest" ) );
 
 		verify( creationDemonstrator ).demoFunction( ImmutableList.of( "iamatest" ) );
 	}
-
 
 }

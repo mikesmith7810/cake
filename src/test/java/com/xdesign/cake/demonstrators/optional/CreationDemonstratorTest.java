@@ -32,7 +32,8 @@ public class CreationDemonstratorTest {
 
 	@Test
 	public void shouldCreateAnOptional() {
-		Optional<String> optional = creationDemonstrator.demoFunction( ImmutableList.of( "Some interesting sentence" ) );
+		Optional<String> optional = creationDemonstrator
+				.demoFunction( ImmutableList.of( "Some interesting sentence" ) );
 
 		assertThat( optional.isPresent() ).isTrue();
 	}

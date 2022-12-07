@@ -31,7 +31,8 @@ public class ForEachDemonstratorTest {
 
 	@Test
 	public void shouldOutputAllWordsPassedToTheConsole() {
-		String words = forEachDemonstrator.demoFunction( ImmutableList.of( "Some interesting sentence" ) );
+		String words = forEachDemonstrator
+				.demoFunction( ImmutableList.of( "Some interesting sentence" ) );
 
 		assertThat( outputStreamCaptor.toString().trim() ).isEqualTo( "Some interesting sentence" );
 	}

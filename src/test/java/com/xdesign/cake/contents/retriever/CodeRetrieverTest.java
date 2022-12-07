@@ -23,7 +23,8 @@ public class CodeRetrieverTest {
 
 	@Test
 	public void shouldUseCallGitHubForCode() throws IOException {
-		final String code = codeRetriever.retrieveCodeFor("com/test/Test.java");
+		final String code = codeRetriever.retrieveCodeFor(
+				"https://raw.githubusercontent.com/mikesmith7810/cake/master/src/test/java/com/xdesign/cake/contents/retriever/CodeRetrieverTest.java" );
 
 		assertThat( code ).isNotNull();
 	}

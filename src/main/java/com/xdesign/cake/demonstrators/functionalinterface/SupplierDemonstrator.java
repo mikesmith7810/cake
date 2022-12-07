@@ -13,7 +13,7 @@ public class SupplierDemonstrator extends Demonstrator {
 	@CodeExample(name = "Supplier",
 			description = "Supplier Code Example. Supplies the current date.",
 			api = "/java/functionalinterface",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/SupplierDemonstrator.java",
+			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/SupplierDemonstrator.java",
 			chapter = "Functional Interfaces")
 	public String demoFunction() {
 		final Supplier<String> dateSupplier = () -> LocalDate.now()

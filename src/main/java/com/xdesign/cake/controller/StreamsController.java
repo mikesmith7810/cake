@@ -16,7 +16,7 @@ public class StreamsController {
 	private StreamsTeacher streamsTeacher;
 
 	@GetMapping("/java/streams")
-	public StreamsTaskResult runLearningMaterial(@RequestBody final StreamsTask task ) {
+	public StreamsTaskResult runLearningMaterial( @RequestBody final StreamsTask task ) {
 		return StreamsTaskResult.builder()
 				.type( task.getTaskType() )
 				.value( streamsTeacher.runLearningMaterial( task ).getValue() )

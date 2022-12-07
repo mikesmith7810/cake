@@ -12,7 +12,7 @@ public class FunctionDemonstrator extends Demonstrator {
 	@CodeExample(name = "Function",
 			description = "Function Code Example. Reverses a string.",
 			api = "/java/functionalinterface",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/FunctionDemonstrator.java",
+			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/FunctionDemonstrator.java",
 			chapter = "Functional Interfaces")
 	public String demoFunction( final List<String> input ) {
 		final Function<String, String> reverser = s -> {

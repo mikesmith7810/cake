@@ -30,8 +30,9 @@ public class StreamsTeacherTest {
 
 	@Test
 	public void shouldCallDemonstrator() {
-		when( forEachDemonstrator.demoFunction( ImmutableList.of( "iamatest", "andiamatestaswell" ) ) )
-				.thenReturn( "iamatest//nandiamatestaswell" );
+		when( forEachDemonstrator
+				.demoFunction( ImmutableList.of( "iamatest", "andiamatestaswell" ) ) )
+						.thenReturn( "iamatest//nandiamatestaswell" );
 
 		final String result = streamsTeacher.demoFunction( StreamsType.FOREACH,
 				ImmutableList.of( "iamatest", "andiamatestaswell" ) );

@@ -30,14 +30,17 @@ public class ContentsRetrieverTest {
 	@BeforeEach
 	public void setup() {
 		contentsRetriever = new ContentsRetriever( codeRetriever, contentsStore );
-		contentsRetriever.setExamples(
-				List.of( Example.builder().githubLocation( "com/test/Test.java" ).chapter("test chapter").githubLocation("com/test/Test.java").build() ) );
+		contentsRetriever.setExamples( List.of( Example.builder()
+				.githubLocation( "com/test/Test.java" )
+				.chapter( "test chapter" )
+				.githubLocation( "com/test/Test.java" )
+				.build() ) );
 	}
 
 	@Test
 	public void shouldUseCodeRetrieverToGetSource() throws IOException {
 
-		when(contentsStore.getContents()).thenReturn(null);
+		when( contentsStore.getContents() ).thenReturn( null );
 
 		contentsRetriever.cacheContents();
 

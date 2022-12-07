@@ -25,8 +25,7 @@ public class CodeRetriever {
 		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 		try ( InputStream inputStream = httpURLConnection.getInputStream() ) {
 
-			Reader reader = new BufferedReader(
-					new InputStreamReader( inputStream, "UTF-8" ) );
+			Reader reader = new BufferedReader( new InputStreamReader( inputStream, "UTF-8" ) );
 			int counter;
 			while ( ( counter = reader.read( buffer ) ) != -1 ) {
 				writer.write( buffer, 0, counter );

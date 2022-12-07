@@ -39,8 +39,7 @@ class OptionalControllerTest {
 
 	@ParameterizedTest
 	@EnumSource(OptionalType.class)
-	void shouldDelegateOptionalTaskToTeacher(
-			final OptionalType optionalType ) throws Exception {
+	void shouldDelegateOptionalTaskToTeacher( final OptionalType optionalType ) throws Exception {
 
 		final OptionalTask optionalTask = OptionalTask.builder()
 				.taskType( optionalType )

@@ -39,8 +39,7 @@ class StreamsControllerTest {
 
 	@ParameterizedTest
 	@EnumSource(StreamsType.class)
-	void shouldDelegateStreamsTaskToTeacher(
-			final StreamsType streamsType ) throws Exception {
+	void shouldDelegateStreamsTaskToTeacher( final StreamsType streamsType ) throws Exception {
 
 		final StreamsTask streamsTask = StreamsTask.builder()
 				.taskType( streamsType )
@@ -52,8 +51,7 @@ class StreamsControllerTest {
 				.value( "tsetasisiht" )
 				.build();
 
-		when( streamsTeacher.runLearningMaterial( streamsTask ) )
-				.thenReturn( streamsTaskResult );
+		when( streamsTeacher.runLearningMaterial( streamsTask ) ).thenReturn( streamsTaskResult );
 
 		this.mockMvc
 				.perform( get( "/java/streams" ).content( asJsonString( streamsTask ) )

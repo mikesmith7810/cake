@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
@@ -16,17 +16,27 @@ import com.xdesign.cake.contents.annotation.CodeExample;
 import com.xdesign.cake.demonstrators.functionalinterface.Demonstrator;
 import com.xdesign.cake.domain.Example;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Data
 @Slf4j
 public class ContentsBeanPostProcessor implements BeanPostProcessor {
 
-	@Autowired
+	public static final String JAVA = ".java";
 	private ContentsStore contentsStore;
 
-	@Autowired
 	public ContentsRetriever contentsRetriever;
+
+	@Value("${github.url}")
+	private String gitHubUrl;
+
+	public ContentsBeanPostProcessor( final ContentsStore contentsStore,
+			final ContentsRetriever contentsRetriever ) {
+		this.contentsStore = contentsStore;
+		this.contentsRetriever = contentsRetriever;
+	}
 
 	@Override
 	public Object postProcessAfterInitialization( final Object bean, final String beanName )
@@ -43,7 +53,7 @@ public class ContentsBeanPostProcessor implements BeanPostProcessor {
 				.map( annotation -> Example.builder()
 						.name( annotation.name() )
 						.description( annotation.description() )
-						.githubLocation( annotation.githubLocation() )
+						.githubLocation( generateGitHubURL( beanClass.getCanonicalName() ) )
 						.apiCall( annotation.api() )
 						.chapter( annotation.chapter() )
 						.build() )
@@ -53,5 +63,9 @@ public class ContentsBeanPostProcessor implements BeanPostProcessor {
 				.forEach( beanExample -> contentsRetriever.getExamples().add( beanExample ) );
 
 		return bean;
+	}
+
+	public String generateGitHubURL( String className ) {
+		return gitHubUrl + className.replace( ".", "/" ) + JAVA;
 	}
 }

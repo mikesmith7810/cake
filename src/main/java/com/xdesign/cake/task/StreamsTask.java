@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 @Builder
 public class StreamsTask {
-    final private StreamsType taskType;
+	final private StreamsType taskType;
 	final private List<String> parameters;
 }

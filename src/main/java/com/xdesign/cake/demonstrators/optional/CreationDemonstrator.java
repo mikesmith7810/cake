@@ -10,14 +10,14 @@ import com.xdesign.cake.demonstrators.functionalinterface.Demonstrator;
 
 @Component
 public class CreationDemonstrator extends Demonstrator {
-    @CodeExample(name = "Optional Creation",
+	@CodeExample(name = "Optional Creation",
 			description = "Creates an Optional.",
 			api = "/java/optional",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/FunctionDemonstrator.java",
+			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/optional/CreationDemonstrator.java",
 			chapter = "Optionals")
-    public Optional<String> demoFunction(final List<String> input) {
-        final Optional<String> optional = Optional.of(input.get( 0 ));
+	public Optional<String> demoFunction( final List<String> input ) {
+		final Optional<String> optional = Optional.of( input.get( 0 ) );
 
-        return optional;
-    }
+		return optional;
+	}
 }

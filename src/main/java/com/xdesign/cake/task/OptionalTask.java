@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 @Builder
 public class OptionalTask {
-    final private OptionalType taskType;
+	final private OptionalType taskType;
 	final private List<String> parameters;
 }
