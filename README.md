@@ -67,7 +67,8 @@ moment)
   .text(result.getValue() )
   .build() );
 
-  	return context.ack( res -> res.responseType( "in_channel" ).text( result.getValue()+ result.getType()  ) );
+      return context.ack( res -> res.responseType( "in_channel" ).text( result.getValue()+ result.getType()  ) );
+- tidy up cake - refactor to learning or piece of cake
 
 
 
