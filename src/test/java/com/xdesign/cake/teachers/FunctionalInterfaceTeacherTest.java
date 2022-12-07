@@ -10,10 +10,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.google.common.collect.ImmutableList;
-import com.xdesign.cake.functionalinterface.ConsumerDemonstrator;
-import com.xdesign.cake.functionalinterface.FunctionDemonstrator;
-import com.xdesign.cake.functionalinterface.PredicateDemonstrator;
-import com.xdesign.cake.functionalinterface.SupplierDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.ConsumerDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.FunctionDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.PredicateDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.SupplierDemonstrator;
 import com.xdesign.cake.task.FunctionalInterfaceType;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

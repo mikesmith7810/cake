@@ -57,8 +57,8 @@ moment)
 
 ### Next Steps 23/11/2022
 
-- Refactor contents store!
 - Add Optional examples
+- Git Hub location retrieval
 - Add streams examples
 
 

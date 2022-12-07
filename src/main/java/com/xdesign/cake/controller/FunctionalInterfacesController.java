@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xdesign.cake.task.Task;
-import com.xdesign.cake.task.TaskResult;
+import com.xdesign.cake.task.FunctionalInterfaceTask;
+import com.xdesign.cake.task.FunctionalInterfaceTaskResult;
 import com.xdesign.cake.teachers.FunctionalInterfaceTeacher;
 
 @RestController
@@ -16,8 +16,9 @@ public class FunctionalInterfacesController {
 	private FunctionalInterfaceTeacher functionalInterfaceTeacher;
 
 	@GetMapping("/java/functionalinterface")
-	public TaskResult runLearningMaterial( @RequestBody final Task task ) {
-		return TaskResult.builder()
+	public FunctionalInterfaceTaskResult runLearningMaterial(
+			@RequestBody final FunctionalInterfaceTask task ) {
+		return FunctionalInterfaceTaskResult.builder()
 				.type( task.getTaskType() )
 				.value( functionalInterfaceTeacher.runLearningMaterial( task ).getValue() )
 				.build();

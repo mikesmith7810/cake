@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Builder
 @Data
-public class TaskResult {
-	final private FunctionalInterfaceType type;
+public class StreamsTaskResult {
+	final private StreamsType type;
 	final private String value;
 
 }

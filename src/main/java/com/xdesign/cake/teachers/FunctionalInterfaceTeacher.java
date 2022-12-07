@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.xdesign.cake.functionalinterface.ConsumerDemonstrator;
-import com.xdesign.cake.functionalinterface.FunctionDemonstrator;
-import com.xdesign.cake.functionalinterface.PredicateDemonstrator;
-import com.xdesign.cake.functionalinterface.SupplierDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.ConsumerDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.FunctionDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.PredicateDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.SupplierDemonstrator;
+import com.xdesign.cake.task.FunctionalInterfaceTask;
+import com.xdesign.cake.task.FunctionalInterfaceTaskResult;
 import com.xdesign.cake.task.FunctionalInterfaceType;
-import com.xdesign.cake.task.Task;
-import com.xdesign.cake.task.TaskResult;
 
 @Component
 public class FunctionalInterfaceTeacher {
@@ -35,9 +35,10 @@ public class FunctionalInterfaceTeacher {
 		this.supplierDemonstrator = supplierDemonstrator;
 	}
 
-	public TaskResult runLearningMaterial( final Task functionTask ) {
+	public FunctionalInterfaceTaskResult runLearningMaterial(
+			final FunctionalInterfaceTask functionTask ) {
 
-		return TaskResult.builder()
+		return FunctionalInterfaceTaskResult.builder()
 				.type( functionTask.getTaskType() )
 				.value( demoFunction( functionTask.getTaskType(), functionTask.getParameters() ) )
 				.build();

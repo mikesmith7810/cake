@@ -6,7 +6,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.xdesign.cake.functionalinterface.FunctionDemonstrator;
+import com.xdesign.cake.demonstrators.functionalinterface.FunctionDemonstrator;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

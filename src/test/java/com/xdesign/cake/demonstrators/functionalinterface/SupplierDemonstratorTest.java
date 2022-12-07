@@ -1,4 +1,4 @@
-package com.xdesign.cake.functionalinterface;
+package com.xdesign.cake.demonstrators.functionalinterface;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

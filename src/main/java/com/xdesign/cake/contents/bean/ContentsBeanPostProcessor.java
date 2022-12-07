@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 import com.xdesign.cake.contents.ContentsRetriever;
 import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.contents.annotation.CodeExample;
+import com.xdesign.cake.demonstrators.functionalinterface.Demonstrator;
 import com.xdesign.cake.domain.Example;
-import com.xdesign.cake.functionalinterface.Demonstrator;
 
 import lombok.extern.slf4j.Slf4j;
 

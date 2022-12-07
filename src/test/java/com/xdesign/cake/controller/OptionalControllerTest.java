@@ -19,53 +19,52 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import com.xdesign.cake.task.FunctionalInterfaceTask;
-import com.xdesign.cake.task.FunctionalInterfaceTaskResult;
-import com.xdesign.cake.task.FunctionalInterfaceType;
-import com.xdesign.cake.teachers.FunctionalInterfaceTeacher;
+import com.xdesign.cake.task.OptionalTask;
+import com.xdesign.cake.task.OptionalTaskResult;
+import com.xdesign.cake.task.OptionalType;
+import com.xdesign.cake.teachers.OptionalTeacher;
 
-@WebMvcTest(FunctionalInterfacesController.class)
-class FunctionalInterfacesControllerTest {
+@WebMvcTest(OptionalController.class)
+class OptionalControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
-	private FunctionalInterfaceTeacher functionalInterfaceTeacher;
+	private OptionalTeacher optionalTeacher;
 
 	public static String asJsonString( final Object obj ) throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString( obj );
 	}
 
 	@ParameterizedTest
-	@EnumSource(FunctionalInterfaceType.class)
-	void shouldDelegateFunctionalInterfaceTaskToTeacher(
-			final FunctionalInterfaceType functionalInterfaceType ) throws Exception {
+	@EnumSource(OptionalType.class)
+	void shouldDelegateOptionalTaskToTeacher(
+			final OptionalType optionalType ) throws Exception {
 
-		final FunctionalInterfaceTask functionTask = FunctionalInterfaceTask.builder()
-				.taskType( functionalInterfaceType )
+		final OptionalTask optionalTask = OptionalTask.builder()
+				.taskType( optionalType )
 				.parameters( ImmutableList.of( "thisisatest" ) )
 				.build();
 
-		final FunctionalInterfaceTaskResult functionTaskResult = FunctionalInterfaceTaskResult
-				.builder()
-				.type( functionalInterfaceType )
+		final OptionalTaskResult optionalTaskResult = OptionalTaskResult.builder()
+				.type( optionalType )
 				.value( "tsetasisiht" )
 				.build();
 
-		when( functionalInterfaceTeacher.runLearningMaterial( functionTask ) )
-				.thenReturn( functionTaskResult );
+		when( optionalTeacher.runLearningMaterial( optionalTask ) )
+				.thenReturn( optionalTaskResult );
 
 		this.mockMvc
-				.perform( get( "/java/functionalinterface" ).content( asJsonString( functionTask ) )
+				.perform( get( "/java/optional" ).content( asJsonString( optionalTask ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
 				.andExpect( status().isOk() )
-				.andExpect( jsonPath( "$.type" ).value( functionalInterfaceType.toString() ) )
+				.andExpect( jsonPath( "$.type" ).value( optionalType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( functionalInterfaceTeacher, times( 1 ) ).runLearningMaterial( functionTask );
+		verify( optionalTeacher, times( 1 ) ).runLearningMaterial( optionalTask );
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.xdesign.cake.functionalinterface;
+package com.xdesign.cake.demonstrators.functionalinterface;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

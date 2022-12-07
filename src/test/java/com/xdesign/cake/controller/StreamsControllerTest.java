@@ -19,53 +19,52 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import com.xdesign.cake.task.FunctionalInterfaceTask;
-import com.xdesign.cake.task.FunctionalInterfaceTaskResult;
-import com.xdesign.cake.task.FunctionalInterfaceType;
-import com.xdesign.cake.teachers.FunctionalInterfaceTeacher;
+import com.xdesign.cake.task.StreamsTask;
+import com.xdesign.cake.task.StreamsTaskResult;
+import com.xdesign.cake.task.StreamsType;
+import com.xdesign.cake.teachers.StreamsTeacher;
 
-@WebMvcTest(FunctionalInterfacesController.class)
-class FunctionalInterfacesControllerTest {
+@WebMvcTest(StreamsController.class)
+class StreamsControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
-	private FunctionalInterfaceTeacher functionalInterfaceTeacher;
+	private StreamsTeacher streamsTeacher;
 
 	public static String asJsonString( final Object obj ) throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString( obj );
 	}
 
 	@ParameterizedTest
-	@EnumSource(FunctionalInterfaceType.class)
-	void shouldDelegateFunctionalInterfaceTaskToTeacher(
-			final FunctionalInterfaceType functionalInterfaceType ) throws Exception {
+	@EnumSource(StreamsType.class)
+	void shouldDelegateStreamsTaskToTeacher(
+			final StreamsType streamsType ) throws Exception {
 
-		final FunctionalInterfaceTask functionTask = FunctionalInterfaceTask.builder()
-				.taskType( functionalInterfaceType )
+		final StreamsTask streamsTask = StreamsTask.builder()
+				.taskType( streamsType )
 				.parameters( ImmutableList.of( "thisisatest" ) )
 				.build();
 
-		final FunctionalInterfaceTaskResult functionTaskResult = FunctionalInterfaceTaskResult
-				.builder()
-				.type( functionalInterfaceType )
+		final StreamsTaskResult streamsTaskResult = StreamsTaskResult.builder()
+				.type( streamsType )
 				.value( "tsetasisiht" )
 				.build();
 
-		when( functionalInterfaceTeacher.runLearningMaterial( functionTask ) )
-				.thenReturn( functionTaskResult );
+		when( streamsTeacher.runLearningMaterial( streamsTask ) )
+				.thenReturn( streamsTaskResult );
 
 		this.mockMvc
-				.perform( get( "/java/functionalinterface" ).content( asJsonString( functionTask ) )
+				.perform( get( "/java/optional" ).content( asJsonString( streamsTask ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
 				.andExpect( status().isOk() )
-				.andExpect( jsonPath( "$.type" ).value( functionalInterfaceType.toString() ) )
+				.andExpect( jsonPath( "$.type" ).value( streamsType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( functionalInterfaceTeacher, times( 1 ) ).runLearningMaterial( functionTask );
+		verify( streamsTeacher, times( 1 ) ).runLearningMaterial( streamsTask );
 	}
 
 }
