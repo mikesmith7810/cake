@@ -8,5 +8,5 @@ import lombok.Data;
 @Builder
 @Data
 public class Contents {
-    private List<Chapter> chapters;
+	private List<Chapter> chapters;
 }

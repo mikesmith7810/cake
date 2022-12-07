@@ -8,8 +8,14 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface CodeExample {
+	String name();
+
 	String description();
+
 	String api();
+
+	String chapter();
+
 	String githubLocation();
 
 }

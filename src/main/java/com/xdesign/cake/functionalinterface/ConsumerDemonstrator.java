@@ -9,9 +9,11 @@ import com.xdesign.cake.contents.annotation.CodeExample;
 
 @Component
 public class ConsumerDemonstrator extends Demonstrator {
-	@CodeExample(description = "Consumer Code Example. Sends a message to the console",
+	@CodeExample(name = "Consumer",
+			description = "Consumer Code Example. Sends a message to the console",
 			api = "/java/functionalinterface",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/SupplierDemonstrator.java")
+			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/SupplierDemonstrator.java",
+			chapter = "Functional Interfaces")
 	public String demoFunction( final List<String> input ) {
 		final Consumer<String> consumer = string -> System.out.println( string );
 

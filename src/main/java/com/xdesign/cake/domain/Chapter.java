@@ -8,6 +8,6 @@ import lombok.Data;
 @Builder
 @Data
 public class Chapter {
-    private final String name;
-    private List<Example> examples;
+	private final String name;
+	private List<Example> examples;
 }

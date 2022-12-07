@@ -10,9 +10,11 @@ import com.xdesign.cake.contents.annotation.CodeExample;
 
 @Component
 public class SupplierDemonstrator extends Demonstrator {
-	@CodeExample(description = "Supplier Code Example. Supplies the current date.",
+	@CodeExample(name = "Supplier",
+			description = "Supplier Code Example. Supplies the current date.",
 			api = "/java/functionalinterface",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/ConsumerDemonstrator.java")
+			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/ConsumerDemonstrator.java",
+			chapter = "Functional Interfaces")
 	public String demoFunction() {
 		final Supplier<String> dateSupplier = () -> LocalDate.now()
 				.format( DateTimeFormatter.ISO_LOCAL_DATE );

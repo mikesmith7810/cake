@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 @Component
 public class ContentsStore {
-    private Contents contents;
+	private Contents contents;
 }
