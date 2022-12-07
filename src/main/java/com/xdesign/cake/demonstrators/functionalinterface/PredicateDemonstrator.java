@@ -13,7 +13,7 @@ public class PredicateDemonstrator extends Demonstrator {
 	@CodeExample(name = "Predicate",
 			description = "Predicate Code Example. Filters words starting with 'S'.",
 			api = "/java/functionalinterface",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/PredicateDemonstrator.java",
+			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/PredicateDemonstrator.java",
 			chapter = "Functional Interfaces")
 	public boolean demoFunction( final List<String> word ) {
 		final Predicate<String> startsWithPredicate = w -> w.startsWith( "S" );
@@ -24,7 +24,7 @@ public class PredicateDemonstrator extends Demonstrator {
 	@CodeExample(name = "Predicate",
 			description = "Predicate Code Example. Filters supplied words starting with supplied letter.",
 			api = "/java/functionalinterface",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/PredicateDemonstrator.java",
+			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/functionalinterface/demonstrators/PredicateDemonstrator.java",
 			chapter = "Functional Interfaces")
 	public List<String> demoFunction( final List<String> words, final String letter ) {
 		return words.stream()

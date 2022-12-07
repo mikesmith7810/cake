@@ -11,4 +11,5 @@ public class Example {
 	private final String apiCall;
 	private final String githubLocation;
 	private final String chapter;
+	private String sourceCode;
 }

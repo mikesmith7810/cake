@@ -57,9 +57,8 @@ moment)
 
 ### Next Steps 23/11/2022
 
-- Add Optional examples
 - Git Hub location retrieval
-- Add streams examples
+
 
 
 
