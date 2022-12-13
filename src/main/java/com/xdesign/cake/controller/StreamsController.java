@@ -17,9 +17,6 @@ public class StreamsController {
 
 	@GetMapping("/java/streams")
 	public StreamsTaskResult runLearningMaterial( @RequestBody final StreamsTask task ) {
-		return StreamsTaskResult.builder()
-				.type( task.getTaskType() )
-				.value( streamsTeacher.runLearningMaterial( task ).getValue() )
-				.build();
+		return streamsTeacher.teachThis( task );
 	}
 }

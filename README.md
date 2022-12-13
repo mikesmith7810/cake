@@ -58,17 +58,15 @@ Go to the 'caketest' slack channel and type -
 This should respond with a random cake from the database (don't omit the parameter mike as it will nullpointer at the
 moment)
 
-### Next Steps 07/12/2022
+### Next Steps 13/12/2022
 
-- Integrate response properly with Slack
-- Work out what this is doing
-- ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
-  .channel( "#caketest" )
-  .text(result.getValue() )
-  .build() );
-
-      return context.ack( res -> res.responseType( "in_channel" ).text( result.getValue()+ result.getType()  ) );
+- Tests for Learning and Contents commands
+- Contents response rendering
+- add source code to task results
 - tidy up cake - refactor to learning or piece of cake
+- finals, missing tests
+- more examples
+- -readme and diagrams
 
 
 

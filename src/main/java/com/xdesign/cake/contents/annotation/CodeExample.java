@@ -5,6 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.xdesign.cake.task.TaskType;
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface CodeExample {
@@ -17,5 +19,7 @@ public @interface CodeExample {
 	String chapter();
 
 	String githubLocation();
+
+	TaskType taskType();
 
 }

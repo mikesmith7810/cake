@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.xdesign.cake.task.FunctionalInterfaceTask;
 import com.xdesign.cake.task.FunctionalInterfaceTaskResult;
-import com.xdesign.cake.task.FunctionalInterfaceType;
+import com.xdesign.cake.task.TaskType;
 import com.xdesign.cake.teachers.FunctionalInterfaceTeacher;
 
 @WebMvcTest(FunctionalInterfacesController.class)
@@ -38,9 +38,9 @@ class FunctionalInterfacesControllerTest {
 	}
 
 	@ParameterizedTest
-	@EnumSource(FunctionalInterfaceType.class)
-	void shouldDelegateFunctionalInterfaceTaskToTeacher(
-			final FunctionalInterfaceType functionalInterfaceType ) throws Exception {
+	@EnumSource(TaskType.class)
+	void shouldDelegateFunctionalInterfaceTaskToTeacher( final TaskType functionalInterfaceType )
+			throws Exception {
 
 		final FunctionalInterfaceTask functionTask = FunctionalInterfaceTask.builder()
 				.taskType( functionalInterfaceType )
@@ -53,7 +53,7 @@ class FunctionalInterfacesControllerTest {
 				.value( "tsetasisiht" )
 				.build();
 
-		when( functionalInterfaceTeacher.runLearningMaterial( functionTask ) )
+		when( functionalInterfaceTeacher.teachThis( functionTask ) )
 				.thenReturn( functionTaskResult );
 
 		this.mockMvc
@@ -65,7 +65,7 @@ class FunctionalInterfacesControllerTest {
 				.andExpect( jsonPath( "$.type" ).value( functionalInterfaceType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( functionalInterfaceTeacher, times( 1 ) ).runLearningMaterial( functionTask );
+		verify( functionalInterfaceTeacher, times( 1 ) ).teachThis( functionTask );
 	}
 
 }

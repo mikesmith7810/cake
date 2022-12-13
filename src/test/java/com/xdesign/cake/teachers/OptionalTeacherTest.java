@@ -13,8 +13,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.google.common.collect.ImmutableList;
+import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.demonstrators.optional.CreationDemonstrator;
-import com.xdesign.cake.task.OptionalType;
+import com.xdesign.cake.task.TaskType;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
@@ -25,9 +26,12 @@ public class OptionalTeacherTest {
 	@Mock
 	CreationDemonstrator creationDemonstrator;
 
+	@Mock
+	ContentsStore contentsStore;
+
 	@BeforeEach
 	public void setup() {
-		this.optionalTeacher = new OptionalTeacher( creationDemonstrator );
+		this.optionalTeacher = new OptionalTeacher( creationDemonstrator, contentsStore );
 	}
 
 	@Test
@@ -35,7 +39,7 @@ public class OptionalTeacherTest {
 		when( creationDemonstrator.demoFunction( ImmutableList.of( "iamatest" ) ) )
 				.thenReturn( Optional.of( "iamatest" ) );
 
-		final String result = optionalTeacher.demoFunction( OptionalType.CREATION,
+		final String result = optionalTeacher.demoFunction( TaskType.CREATION,
 				ImmutableList.of( "iamatest" ) );
 
 		verify( creationDemonstrator ).demoFunction( ImmutableList.of( "iamatest" ) );

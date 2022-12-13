@@ -18,9 +18,6 @@ public class FunctionalInterfacesController {
 	@GetMapping("/java/functionalinterface")
 	public FunctionalInterfaceTaskResult runLearningMaterial(
 			@RequestBody final FunctionalInterfaceTask task ) {
-		return FunctionalInterfaceTaskResult.builder()
-				.type( task.getTaskType() )
-				.value( functionalInterfaceTeacher.runLearningMaterial( task ).getValue() )
-				.build();
+		return functionalInterfaceTeacher.teachThis( task );
 	}
 }

@@ -11,8 +11,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.google.common.collect.ImmutableList;
+import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.demonstrators.streams.ForEachDemonstrator;
-import com.xdesign.cake.task.StreamsType;
+import com.xdesign.cake.task.TaskType;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
@@ -23,9 +24,12 @@ public class StreamsTeacherTest {
 	@Mock
 	ForEachDemonstrator forEachDemonstrator;
 
+	@Mock
+	ContentsStore contentsStore;
+
 	@BeforeEach
 	public void setup() {
-		this.streamsTeacher = new StreamsTeacher( forEachDemonstrator );
+		this.streamsTeacher = new StreamsTeacher( forEachDemonstrator, contentsStore );
 	}
 
 	@Test
@@ -34,7 +38,7 @@ public class StreamsTeacherTest {
 				.demoFunction( ImmutableList.of( "iamatest", "andiamatestaswell" ) ) )
 						.thenReturn( "iamatest//nandiamatestaswell" );
 
-		final String result = streamsTeacher.demoFunction( StreamsType.FOREACH,
+		final String result = streamsTeacher.demoFunction( TaskType.FOREACH,
 				ImmutableList.of( "iamatest", "andiamatestaswell" ) );
 
 		verify( forEachDemonstrator )

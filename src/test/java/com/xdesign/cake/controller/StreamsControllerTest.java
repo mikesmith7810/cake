@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.xdesign.cake.task.StreamsTask;
 import com.xdesign.cake.task.StreamsTaskResult;
-import com.xdesign.cake.task.StreamsType;
+import com.xdesign.cake.task.TaskType;
 import com.xdesign.cake.teachers.StreamsTeacher;
 
 @WebMvcTest(StreamsController.class)
@@ -38,8 +38,8 @@ class StreamsControllerTest {
 	}
 
 	@ParameterizedTest
-	@EnumSource(StreamsType.class)
-	void shouldDelegateStreamsTaskToTeacher( final StreamsType streamsType ) throws Exception {
+	@EnumSource(TaskType.class)
+	void shouldDelegateStreamsTaskToTeacher( final TaskType streamsType ) throws Exception {
 
 		final StreamsTask streamsTask = StreamsTask.builder()
 				.taskType( streamsType )
@@ -51,7 +51,7 @@ class StreamsControllerTest {
 				.value( "tsetasisiht" )
 				.build();
 
-		when( streamsTeacher.runLearningMaterial( streamsTask ) ).thenReturn( streamsTaskResult );
+		when( streamsTeacher.teachThis( streamsTask ) ).thenReturn( streamsTaskResult );
 
 		this.mockMvc
 				.perform( get( "/java/streams" ).content( asJsonString( streamsTask ) )
@@ -62,7 +62,7 @@ class StreamsControllerTest {
 				.andExpect( jsonPath( "$.type" ).value( streamsType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( streamsTeacher, times( 1 ) ).runLearningMaterial( streamsTask );
+		verify( streamsTeacher, times( 1 ) ).teachThis( streamsTask );
 	}
 
 }

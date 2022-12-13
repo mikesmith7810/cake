@@ -6,27 +6,42 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.demonstrators.streams.ForEachDemonstrator;
 import com.xdesign.cake.task.StreamsTask;
 import com.xdesign.cake.task.StreamsTaskResult;
-import com.xdesign.cake.task.StreamsType;
+import com.xdesign.cake.task.TaskType;
 
 @Component
 public class StreamsTeacher {
 	private final ForEachDemonstrator forEachDemonstrator;
 
-	public StreamsTeacher( final ForEachDemonstrator forEachDemonstrator ) {
+	private final ContentsStore contentsStore;
+
+	public StreamsTeacher( final ForEachDemonstrator forEachDemonstrator,
+			final ContentsStore contentsStore ) {
 		this.forEachDemonstrator = forEachDemonstrator;
+		this.contentsStore = contentsStore;
 	}
 
-	public StreamsTaskResult runLearningMaterial( StreamsTask task ) {
+	public StreamsTaskResult teachThis( StreamsTask task ) {
 		return StreamsTaskResult.builder()
 				.type( task.getTaskType() )
 				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
+				.sourceCode( contentsStore.getContents()
+						.getChapters()
+						.stream()
+						.map( chapter -> chapter.getExamples() )
+						.flatMap( examples -> examples.stream()
+								.filter( example -> example.getTaskType()
+										.equals( task.getTaskType() ) ) )
+						.findFirst()
+						.get()
+						.getSourceCode() )
 				.build();
 	}
 
-	public String demoFunction( final StreamsType type, final List<String> input ) {
+	public String demoFunction( final TaskType type, final List<String> input ) {
 
 		switch ( type ) {
 		case FOREACH:

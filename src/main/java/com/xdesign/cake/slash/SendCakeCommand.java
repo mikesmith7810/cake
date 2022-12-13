@@ -48,7 +48,6 @@ public class SendCakeCommand extends MessageExtractingCommand {
 				.mrkdwn( true )
 				.build() );
 
-
 		return context.ack( res -> res.responseType( "in_channel" ).text( cakeMessage ) );
 	}
 }

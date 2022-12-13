@@ -17,9 +17,6 @@ public class OptionalController {
 
 	@GetMapping("/java/optional")
 	public OptionalTaskResult runLearningMaterial( @RequestBody final OptionalTask task ) {
-		return OptionalTaskResult.builder()
-				.type( task.getTaskType() )
-				.value( optionalTeacher.runLearningMaterial( task ).getValue() )
-				.build();
+		return optionalTeacher.teachThis( task );
 	}
 }

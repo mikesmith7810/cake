@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.contents.annotation.CodeExample;
 import com.xdesign.cake.demonstrators.functionalinterface.Demonstrator;
+import com.xdesign.cake.task.TaskType;
 
 @Component
 public class CreationDemonstrator extends Demonstrator {
@@ -14,7 +15,8 @@ public class CreationDemonstrator extends Demonstrator {
 			description = "Creates an Optional.",
 			api = "/java/optional",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/optional/CreationDemonstrator.java",
-			chapter = "Optionals")
+			chapter = "Optionals",
+			taskType = TaskType.CREATION)
 	public Optional<String> demoFunction( final List<String> input ) {
 		final Optional<String> optional = Optional.of( input.get( 0 ) );
 

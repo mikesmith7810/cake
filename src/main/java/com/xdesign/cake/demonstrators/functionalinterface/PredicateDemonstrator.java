@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.contents.annotation.CodeExample;
+import com.xdesign.cake.task.TaskType;
 
 @Component
 public class PredicateDemonstrator extends Demonstrator {
@@ -14,7 +15,8 @@ public class PredicateDemonstrator extends Demonstrator {
 			description = "Predicate Code Example. Filters words starting with 'S'.",
 			api = "/java/functionalinterface",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/PredicateDemonstrator.java",
-			chapter = "Functional Interfaces")
+			chapter = "Functional Interfaces",
+			taskType = TaskType.PREDICATE)
 	public boolean demoFunction( final List<String> word ) {
 		final Predicate<String> startsWithPredicate = w -> w.startsWith( "S" );
 
@@ -25,7 +27,8 @@ public class PredicateDemonstrator extends Demonstrator {
 			description = "Predicate Code Example. Filters supplied words starting with supplied letter.",
 			api = "/java/functionalinterface",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/PredicateDemonstrator.java",
-			chapter = "Functional Interfaces")
+			chapter = "Functional Interfaces",
+			taskType = TaskType.PREDICATE2)
 	public List<String> demoFunction( final List<String> words, final String letter ) {
 		return words.stream()
 				.filter( word -> filterListByLetter( word, w -> w.startsWith( letter ) ) )

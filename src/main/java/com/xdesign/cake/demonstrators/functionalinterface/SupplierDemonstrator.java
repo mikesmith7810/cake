@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.contents.annotation.CodeExample;
+import com.xdesign.cake.task.TaskType;
 
 @Component
 public class SupplierDemonstrator extends Demonstrator {
@@ -14,7 +15,8 @@ public class SupplierDemonstrator extends Demonstrator {
 			description = "Supplier Code Example. Supplies the current date.",
 			api = "/java/functionalinterface",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/SupplierDemonstrator.java",
-			chapter = "Functional Interfaces")
+			chapter = "Functional Interfaces",
+			taskType = TaskType.SUPPLIER)
 	public String demoFunction() {
 		final Supplier<String> dateSupplier = () -> LocalDate.now()
 				.format( DateTimeFormatter.ISO_LOCAL_DATE );

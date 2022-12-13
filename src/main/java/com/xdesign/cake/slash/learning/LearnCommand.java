@@ -11,14 +11,12 @@ import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.request.chat.ChatPostMessageRequest;
-import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.xdesign.cake.controller.StreamsController;
 import com.xdesign.cake.slash.MessageExtractingCommand;
 import com.xdesign.cake.slash.annotations.SlashCommand;
 import com.xdesign.cake.task.StreamsTask;
 import com.xdesign.cake.task.StreamsTaskResult;
-import com.xdesign.cake.task.StreamsType;
+import com.xdesign.cake.task.TaskType;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +27,7 @@ public class LearnCommand extends MessageExtractingCommand {
 
 	private final StreamsController streamsController;
 
-	public LearnCommand(final StreamsController streamsController){
+	public LearnCommand( final StreamsController streamsController ) {
 		this.streamsController = streamsController;
 	}
 
@@ -41,13 +39,17 @@ public class LearnCommand extends MessageExtractingCommand {
 		Slack slack = Slack.getInstance();
 		MethodsClient methods = slack.methods( System.getenv( "SLACK_OAUTH_TOKEN" ) );
 
-		StreamsTaskResult result = streamsController.runLearningMaterial(StreamsTask.builder().taskType(StreamsType.FOREACH).parameters(List.of("Mike","is","cool")).build());
-
-		ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
-				.channel( "#caketest" )
-				.text(result.getValue() )
+		StreamsTaskResult result = streamsController.runLearningMaterial( StreamsTask.builder()
+				.taskType( TaskType.FOREACH )
+				.parameters( List.of( "Mike", "is", "cool" ) )
 				.build() );
 
-		return context.ack( res -> res.responseType( "in_channel" ).text( result.getValue()+ result.getType()  ) );
+		//		ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
+		//				.channel( "#caketest" )
+		//				.text(result.getValue() )
+		//				.build() );
+
+		return context.ack( res -> res.responseType( "in_channel" )
+				.text( result.getValue() + result.getType() ) );
 	}
 }

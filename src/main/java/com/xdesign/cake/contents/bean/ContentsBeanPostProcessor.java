@@ -56,6 +56,7 @@ public class ContentsBeanPostProcessor implements BeanPostProcessor {
 						.githubLocation( generateGitHubURL( beanClass.getCanonicalName() ) )
 						.apiCall( annotation.api() )
 						.chapter( annotation.chapter() )
+						.taskType( annotation.taskType() )
 						.build() )
 				.collect( Collectors.toList() );
 

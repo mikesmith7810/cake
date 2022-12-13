@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.xdesign.cake.task.OptionalTask;
 import com.xdesign.cake.task.OptionalTaskResult;
-import com.xdesign.cake.task.OptionalType;
+import com.xdesign.cake.task.TaskType;
 import com.xdesign.cake.teachers.OptionalTeacher;
 
 @WebMvcTest(OptionalController.class)
@@ -38,8 +38,8 @@ class OptionalControllerTest {
 	}
 
 	@ParameterizedTest
-	@EnumSource(OptionalType.class)
-	void shouldDelegateOptionalTaskToTeacher( final OptionalType optionalType ) throws Exception {
+	@EnumSource(TaskType.class)
+	void shouldDelegateOptionalTaskToTeacher( final TaskType optionalType ) throws Exception {
 
 		final OptionalTask optionalTask = OptionalTask.builder()
 				.taskType( optionalType )
@@ -51,7 +51,7 @@ class OptionalControllerTest {
 				.value( "tsetasisiht" )
 				.build();
 
-		when( optionalTeacher.runLearningMaterial( optionalTask ) )
+		when( optionalTeacher.teachThis( optionalTask ) )
 				.thenReturn( optionalTaskResult );
 
 		this.mockMvc
@@ -63,7 +63,7 @@ class OptionalControllerTest {
 				.andExpect( jsonPath( "$.type" ).value( optionalType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( optionalTeacher, times( 1 ) ).runLearningMaterial( optionalTask );
+		verify( optionalTeacher, times( 1 ) ).teachThis( optionalTask );
 	}
 
 }

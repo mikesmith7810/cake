@@ -1,5 +1,7 @@
 package com.xdesign.cake.domain;
 
+import com.xdesign.cake.task.TaskType;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,4 +14,5 @@ public class Example {
 	private final String githubLocation;
 	private final String chapter;
 	private String sourceCode;
+	private final TaskType taskType;
 }

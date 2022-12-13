@@ -10,8 +10,6 @@ import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.request.chat.ChatPostMessageRequest;
-import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.xdesign.cake.controller.ContentsController;
 import com.xdesign.cake.domain.Contents;
 import com.xdesign.cake.slash.MessageExtractingCommand;
@@ -24,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class ContentsCommand extends MessageExtractingCommand {
 
+	public static final String NEWLINE = "\n";
 	private final ContentsController contentsController;
 
 	public ContentsCommand( final ContentsController contentsController ) {
@@ -38,13 +37,20 @@ public class ContentsCommand extends MessageExtractingCommand {
 
 		Contents contents = contentsController.getContents();
 
-		ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
-				.channel( "#caketest" )
-				.text( "`" + contents.toString() + "`" )
-				.mrkdwn( true )
-				.build() );
+		//ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
+		//				.channel( "#caketest" )
+		//				.text( "`" + "chat respsone test" + "`" )
+		//				.mrkdwn( true )
+		//				.build() );
 
-		return context.ack(
-				res -> res.responseType( "in_channel" ).text( "`" + contents.toString() + "`" ) );
+		return context.ack( res -> res.responseType( "in_channel" )
+				.text( "*" + contents.getChapters()
+						.get( 0 )
+						.getName() + "*" + NEWLINE + "```" + contents.getChapters()
+								.get( 0 )
+								.getExamples()
+								.get( 0 )
+								.getSourceCode() + "```" ) );
+
 	}
 }

@@ -6,7 +6,8 @@ import lombok.Data;
 @Builder
 @Data
 public class FunctionalInterfaceTaskResult {
-	final private FunctionalInterfaceType type;
+	final private TaskType type;
 	final private String value;
+	private final String sourceCode;
 
 }
