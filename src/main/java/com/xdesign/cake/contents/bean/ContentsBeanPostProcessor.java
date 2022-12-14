@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
-import com.xdesign.cake.contents.ContentsRetriever;
 import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.contents.annotation.CodeExample;
 import com.xdesign.cake.demonstrators.functionalinterface.Demonstrator;
@@ -27,15 +26,11 @@ public class ContentsBeanPostProcessor implements BeanPostProcessor {
 	public static final String JAVA = ".java";
 	private ContentsStore contentsStore;
 
-	public ContentsRetriever contentsRetriever;
-
 	@Value("${github.url}")
 	private String gitHubUrl;
 
-	public ContentsBeanPostProcessor( final ContentsStore contentsStore,
-			final ContentsRetriever contentsRetriever ) {
+	public ContentsBeanPostProcessor( final ContentsStore contentsStore ) {
 		this.contentsStore = contentsStore;
-		this.contentsRetriever = contentsRetriever;
 	}
 
 	@Override
@@ -62,7 +57,7 @@ public class ContentsBeanPostProcessor implements BeanPostProcessor {
 				.collect( Collectors.toList() );
 
 		beanExamples.stream()
-				.forEach( beanExample -> contentsRetriever.getExamples().add( beanExample ) );
+				.forEach( beanExample -> contentsStore.getExamples().add( beanExample ) );
 
 		return bean;
 	}

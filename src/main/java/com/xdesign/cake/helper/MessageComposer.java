@@ -3,10 +3,13 @@ package com.xdesign.cake.helper;
 import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
+import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.domain.Chapter;
-import com.xdesign.cake.domain.Contents;
+import com.xdesign.cake.task.StreamsTaskResult;
 
+@Component
 public class MessageComposer {
 	public static final String NEWLINE = "\n";
 	public static final String TAB = "\t";
@@ -14,13 +17,27 @@ public class MessageComposer {
 	public static final String ITALIC = "_";
 	public static final String CODEBLOCK = "```";
 
-	public static String createMessageFrom( Contents contents ) {
+	private ContentsStore contentStore;
 
-		return contents.getChapters()
+	public MessageComposer( final ContentsStore contentsStore ) {
+		this.contentStore = contentsStore;
+	}
+
+	public String createMessageForContents() {
+
+		return contentStore.retrieveContents()
+				.getChapters()
 				.stream()
 				.map( createChapterMessage() )
 				.collect( StringBuilder::new, StringBuilder::append, StringBuilder::append )
 				.toString();
+	}
+
+	public String createMessageForTaskResult( final StreamsTaskResult streamsTaskResult ) {
+
+		return bold( "Result" ) + NEWLINE + streamsTaskResult.getValue() + NEWLINE + bold(
+				"Source Code : " ) + NEWLINE + CODEBLOCK + streamsTaskResult
+						.getSourceCode() + CODEBLOCK;
 	}
 
 	@NotNull
@@ -37,4 +54,5 @@ public class MessageComposer {
 	public static String bold( final String test ) {
 		return BOLD + test + BOLD;
 	}
+
 }

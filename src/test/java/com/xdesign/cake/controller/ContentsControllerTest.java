@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import com.xdesign.cake.contents.ContentsRetriever;
+import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.domain.Chapter;
 import com.xdesign.cake.domain.Contents;
 import com.xdesign.cake.domain.Example;
@@ -30,7 +30,7 @@ class ContentsControllerTest {
 	private MockMvc mockMvc;
 
 	@MockBean
-	private ContentsRetriever contentsRetriever;
+	private ContentsStore contentsStore;
 
 	public static String asJsonString( final Object obj ) throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString( obj );
@@ -49,13 +49,13 @@ class ContentsControllerTest {
 						.build() ) )
 				.build();
 
-		when( contentsRetriever.retrieveAllContents() ).thenReturn( contents );
+		when( contentsStore.retrieveContents() ).thenReturn( contents );
 
 		this.mockMvc.perform( get( "/java/contents" ).accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
 				.andExpect( status().isOk() )
 				.andExpect( jsonPath( "$.chapters" ).exists() );
 
-		verify( contentsRetriever, times( 1 ) ).retrieveAllContents();
+		verify( contentsStore, times( 1 ) ).retrieveContents();
 	}
 }

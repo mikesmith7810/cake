@@ -28,7 +28,7 @@ public class StreamsTeacher {
 		return StreamsTaskResult.builder()
 				.type( task.getTaskType() )
 				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
-				.sourceCode( contentsStore.getContents()
+				.sourceCode( contentsStore.retrieveContents()
 						.getChapters()
 						.stream()
 						.map( chapter -> chapter.getExamples() )

@@ -30,7 +30,7 @@ public class OptionalTeacher {
 		return OptionalTaskResult.builder()
 				.type( optionalTask.getTaskType() )
 				.value( demoFunction( optionalTask.getTaskType(), optionalTask.getParameters() ) )
-				.sourceCode( contentsStore.getContents()
+				.sourceCode( contentsStore.retrieveContents()
 						.getChapters()
 						.stream()
 						.map( chapter -> chapter.getExamples() )

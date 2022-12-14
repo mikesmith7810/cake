@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.xdesign.cake.contents.ContentsRetriever;
 import com.xdesign.cake.contents.ContentsStore;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -20,13 +19,9 @@ public class ContentsBeanPostProcessorTest {
 	@Mock
 	private ContentsStore contentsStore;
 
-	@Mock
-	private ContentsRetriever contentsRetriever;
-
 	@BeforeEach
 	public void setup() {
-		contentsBeanPostProcessor = new ContentsBeanPostProcessor( contentsStore,
-				contentsRetriever );
+		contentsBeanPostProcessor = new ContentsBeanPostProcessor( contentsStore );
 		contentsBeanPostProcessor.setGitHubUrl( "http://www.test.com/reponame/app/src/main/java/" );
 	}
 

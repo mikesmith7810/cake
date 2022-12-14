@@ -22,7 +22,11 @@ public abstract class MessageExtractingCommand implements SlashCommandHandler {
 	@Override
 	public final Response apply( final SlashCommandRequest request,
 			final SlashCommandContext context ) throws IOException, SlackApiException {
-		final String message = request.getPayload().getText().trim();
+		String message = "";
+		if ( request.getPayload().getText() != null ) {
+			message = request.getPayload().getText().trim();
+		}
+
 		log.info( "Applying : " + message );
 		try {
 			return doRespond( message, request, context );

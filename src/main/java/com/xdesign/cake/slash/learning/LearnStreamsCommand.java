@@ -1,18 +1,15 @@
 package com.xdesign.cake.slash.learning;
 
-import java.io.IOException;
-import java.util.List;
+import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
 
-import com.slack.api.Slack;
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
-import com.slack.api.methods.MethodsClient;
-import com.slack.api.methods.SlackApiException;
 import com.xdesign.cake.controller.StreamsController;
+import com.xdesign.cake.helper.MessageComposer;
 import com.xdesign.cake.slash.MessageExtractingCommand;
 import com.xdesign.cake.slash.annotations.SlashCommand;
 import com.xdesign.cake.task.StreamsTask;
@@ -28,26 +25,27 @@ public class LearnStreamsCommand extends MessageExtractingCommand {
 
 	private final StreamsController streamsController;
 
-	public LearnStreamsCommand( final StreamsController streamsController ) {
+	private MessageComposer messageComposer;
+
+	public LearnStreamsCommand( final StreamsController streamsController,
+			final MessageComposer messageComposer ) {
 		this.streamsController = streamsController;
+		this.messageComposer = messageComposer;
 	}
 
 	protected Response doRespond( final String message, final SlashCommandRequest request,
-			final SlashCommandContext context ) throws SlackApiException, IOException {
+			final SlashCommandContext context ) {
 
-		final String responseMessage = "testjavalearn";
-
-		Slack slack = Slack.getInstance();
-		MethodsClient methods = slack.methods( System.getenv( "SLACK_OAUTH_TOKEN" ) );
+		final String[] arguments = message.split( " " );
 
 		StreamsTaskResult result = streamsController.runLearningMaterial( StreamsTask.builder()
-				.taskType( TaskType.FOREACH )
-				.parameters( List.of( "Mike", "is", "cool" ) )
+				.taskType( TaskType.valueOf( arguments[0] ) )
+				.parameters( Arrays.asList( arguments ).subList( 1, arguments.length ) )
 				.build() );
 
 		return context.ack( SlashCommandResponse.builder()
 				.responseType( "in_channel" )
-				.text( result.getValue() + result.getType() )
+				.text( messageComposer.createMessageForTaskResult( result ) )
 				.build() );
 	}
 }

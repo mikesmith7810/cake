@@ -17,7 +17,7 @@ import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
-import com.xdesign.cake.controller.ContentsController;
+import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.domain.Chapter;
 import com.xdesign.cake.domain.Contents;
 import com.xdesign.cake.domain.Example;
@@ -31,7 +31,10 @@ public class ContentsCommandTest {
 	private ContentsCommand contentsCommand;
 
 	@Mock
-	private ContentsController contentsController;
+	private MessageComposer messageComposer;
+
+	@Mock
+	private ContentsStore contentsStore;
 
 	@Mock
 	private SlashCommandRequest slashCommandRequest;
@@ -43,23 +46,23 @@ public class ContentsCommandTest {
 
 	@BeforeEach
 	public void setup() {
-		contentsCommand = new ContentsCommand( contentsController );
+		contentsCommand = new ContentsCommand( messageComposer );
 
 		this.contents = createTestContents();
 
-		when( contentsController.getContents() ).thenReturn( contents );
+		when( messageComposer.createMessageForContents() ).thenReturn( "Some contents" );
 		when( slashCommandContext.ack( SlashCommandResponse.builder()
 				.responseType( "in_channel" )
-				.text( MessageComposer.createMessageFrom( contents ) )
+				.text( "Some contents" )
 				.build() ) ).thenReturn( Response.builder().body( "blah" ).build() );
 	}
 
 	@Test
-	public void shouldGetContentsFromController() {
+	public void shouldGetContentsMessage() {
 		final Response response = contentsCommand.doRespond( "Test Message", slashCommandRequest,
 				slashCommandContext );
 
-		verify( contentsController ).getContents();
+		verify( messageComposer ).createMessageForContents();
 	}
 
 	@Test

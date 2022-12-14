@@ -44,7 +44,7 @@ public class FunctionalInterfaceTeacher {
 		return FunctionalInterfaceTaskResult.builder()
 				.type( functionTask.getTaskType() )
 				.value( demoFunction( functionTask.getTaskType(), functionTask.getParameters() ) )
-				.sourceCode( contentsStore.getContents()
+				.sourceCode( contentsStore.retrieveContents()
 						.getChapters()
 						.stream()
 						.map( chapter -> chapter.getExamples() )
