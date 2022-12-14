@@ -56,8 +56,10 @@ public class ContentsStore {
 						chapter.getExamples().add( example );
 					} );
 		} );
+
 		log.info( "Creating contents with chapters : " + uniqueChapters.size() );
+
 		setContents(
-				Contents.builder().chapters( new ArrayList<Chapter>( uniqueChapters ) ).build() );
+				Contents.builder().chapters( new ArrayList<>( uniqueChapters ) ).build() );
 	}
 }

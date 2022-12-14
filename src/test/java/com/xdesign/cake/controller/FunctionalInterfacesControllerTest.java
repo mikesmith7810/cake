@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import com.xdesign.cake.task.FunctionalInterfaceTask;
-import com.xdesign.cake.task.FunctionalInterfaceTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 import com.xdesign.cake.teachers.FunctionalInterfaceTeacher;
 
@@ -42,22 +42,22 @@ class FunctionalInterfacesControllerTest {
 	void shouldDelegateFunctionalInterfaceTaskToTeacher( final TaskType functionalInterfaceType )
 			throws Exception {
 
-		final FunctionalInterfaceTask functionTask = FunctionalInterfaceTask.builder()
+		final Task task = Task.builder()
 				.taskType( functionalInterfaceType )
 				.parameters( ImmutableList.of( "thisisatest" ) )
 				.build();
 
-		final FunctionalInterfaceTaskResult functionTaskResult = FunctionalInterfaceTaskResult
+		final TaskResult functionTaskResult = TaskResult
 				.builder()
 				.type( functionalInterfaceType )
 				.value( "tsetasisiht" )
 				.build();
 
-		when( functionalInterfaceTeacher.teachThis( functionTask ) )
+		when( functionalInterfaceTeacher.teachThis( task ) )
 				.thenReturn( functionTaskResult );
 
 		this.mockMvc
-				.perform( get( "/java/functionalinterface" ).content( asJsonString( functionTask ) )
+				.perform( get( "/java/functionalinterface" ).content( asJsonString( task ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
@@ -65,7 +65,7 @@ class FunctionalInterfacesControllerTest {
 				.andExpect( jsonPath( "$.type" ).value( functionalInterfaceType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( functionalInterfaceTeacher, times( 1 ) ).teachThis( functionTask );
+		verify( functionalInterfaceTeacher, times( 1 ) ).teachThis( task );
 	}
 
 }

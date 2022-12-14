@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.demonstrators.optional.CreationDemonstrator;
-import com.xdesign.cake.task.OptionalTask;
-import com.xdesign.cake.task.OptionalTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 @Component
@@ -25,18 +25,18 @@ public class OptionalTeacher {
 		this.contentsStore = contentsStore;
 	}
 
-	public OptionalTaskResult teachThis( final OptionalTask optionalTask ) {
+	public TaskResult teachThis( final Task task ) {
 
-		return OptionalTaskResult.builder()
-				.type( optionalTask.getTaskType() )
-				.value( demoFunction( optionalTask.getTaskType(), optionalTask.getParameters() ) )
+		return TaskResult.builder()
+				.type( task.getTaskType() )
+				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
 				.sourceCode( contentsStore.retrieveContents()
 						.getChapters()
 						.stream()
 						.map( chapter -> chapter.getExamples() )
 						.flatMap( examples -> examples.stream()
 								.filter( example -> example.getTaskType()
-										.equals( optionalTask.getTaskType() ) ) )
+										.equals( task.getTaskType() ) ) )
 						.findFirst()
 						.get()
 						.getSourceCode() )

@@ -27,7 +27,6 @@ public abstract class MessageExtractingCommand implements SlashCommandHandler {
 			message = request.getPayload().getText().trim();
 		}
 
-		log.info( "Applying : " + message );
 		try {
 			return doRespond( message, request, context );
 		} catch ( final IOException | SlackApiException ex ) {
@@ -43,9 +42,7 @@ public abstract class MessageExtractingCommand implements SlashCommandHandler {
 	 *
 	 * @param message
 	 *            the message (remainder of invocation message after the name of the
-	 *            command) to respond to. For example, if responding to
-	 *            <code>/pick Kelpies StandUp</code> then this will be
-	 *            <code>Kelpies StandUp</code>.
+	 *            command) to respond to.
 	 * @param request
 	 *            the {@code Request} to respond to
 	 * @param context

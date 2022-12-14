@@ -21,7 +21,7 @@ import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.domain.Chapter;
 import com.xdesign.cake.domain.Contents;
 import com.xdesign.cake.domain.Example;
-import com.xdesign.cake.task.StreamsTaskResult;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,17 +31,16 @@ public class MessageComposerTest {
 	@Mock
 	private ContentsStore contentsStore;
 
-	private StreamsTaskResult streamsTaskResult;
+	private TaskResult taskResult;
 
 	private MessageComposer messageComposer;
 
 	@BeforeEach
 	public void setup() {
 		this.messageComposer = new MessageComposer( contentsStore );
-		this.streamsTaskResult = createTestTaskResult();
+		this.taskResult = createTestTaskResult();
 
 	}
-
 
 	@Test
 	public void shouldCreateMessageFromContents() {
@@ -60,15 +59,15 @@ public class MessageComposerTest {
 
 	@Test
 	public void shouldCreateMessageForLearning() {
-		final String message = messageComposer.createMessageForTaskResult( streamsTaskResult );
+		final String message = messageComposer.createMessageForTaskResult( taskResult );
 
 		assertThat( message ).isEqualTo( bold( "Result" ) + NEWLINE + "Result" + NEWLINE + bold(
 				"Source Code : " ) + NEWLINE + CODEBLOCK + "Foreach source code" + CODEBLOCK );
 
 	}
 
-	private StreamsTaskResult createTestTaskResult() {
-		return StreamsTaskResult.builder()
+	private TaskResult createTestTaskResult() {
+		return TaskResult.builder()
 				.type( TaskType.FOREACH )
 				.value( "Result" )
 				.sourceCode( "Foreach source code" )

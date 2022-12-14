@@ -19,7 +19,7 @@ public class FunctionDemonstrator extends Demonstrator {
 			slashCommand = "/learnjavafunctions FUNCTION raspeberry")
 	public String demoFunction( final List<String> input ) {
 		final Function<String, String> reverser = s -> {
-			StringBuilder stringBuilder = new StringBuilder( s );
+			final StringBuilder stringBuilder = new StringBuilder( s );
 
 			return stringBuilder.reverse().toString();
 		};

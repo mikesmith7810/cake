@@ -26,10 +26,10 @@ public class EventListenerBeanPostProcessor implements BeanPostProcessor {
 
 	private final App app;
 
-	public EventListenerBeanPostProcessor( final App cakeApp ) {
-		Assert.notNull( cakeApp, "'cakeApp' must not be 'null'" );
+	public EventListenerBeanPostProcessor( final App app ) {
+		Assert.notNull( app, "'app' must not be 'null'" );
 
-		this.app = cakeApp;
+		this.app = app;
 	}
 
 	@Override

@@ -9,8 +9,8 @@ import com.xdesign.cake.demonstrators.functionalinterface.ConsumerDemonstrator;
 import com.xdesign.cake.demonstrators.functionalinterface.FunctionDemonstrator;
 import com.xdesign.cake.demonstrators.functionalinterface.PredicateDemonstrator;
 import com.xdesign.cake.demonstrators.functionalinterface.SupplierDemonstrator;
-import com.xdesign.cake.task.FunctionalInterfaceTask;
-import com.xdesign.cake.task.FunctionalInterfaceTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 @Component
@@ -39,18 +39,18 @@ public class FunctionalInterfaceTeacher {
 		this.contentsStore = contentsStore;
 	}
 
-	public FunctionalInterfaceTaskResult teachThis( final FunctionalInterfaceTask functionTask ) {
+	public TaskResult teachThis( final Task task ) {
 
-		return FunctionalInterfaceTaskResult.builder()
-				.type( functionTask.getTaskType() )
-				.value( demoFunction( functionTask.getTaskType(), functionTask.getParameters() ) )
+		return TaskResult.builder()
+				.type( task.getTaskType() )
+				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
 				.sourceCode( contentsStore.retrieveContents()
 						.getChapters()
 						.stream()
 						.map( chapter -> chapter.getExamples() )
 						.flatMap( examples -> examples.stream()
 								.filter( example -> example.getTaskType()
-										.equals( functionTask.getTaskType() ) ) )
+										.equals( task.getTaskType() ) ) )
 						.findFirst()
 						.get()
 						.getSourceCode() )

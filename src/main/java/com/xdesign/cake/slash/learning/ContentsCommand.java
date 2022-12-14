@@ -26,12 +26,9 @@ public class ContentsCommand extends MessageExtractingCommand {
 	protected Response doRespond( final String message, final SlashCommandRequest request,
 			final SlashCommandContext context ) {
 
-		Response response = context.ack( SlashCommandResponse.builder()
+		return context.ack( SlashCommandResponse.builder()
 				.responseType( "in_channel" )
 				.text( messageComposer.createMessageForContents() )
 				.build() );
-
-		return response;
-
 	}
 }

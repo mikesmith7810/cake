@@ -12,8 +12,8 @@ import com.xdesign.cake.controller.StreamsController;
 import com.xdesign.cake.helper.MessageComposer;
 import com.xdesign.cake.slash.MessageExtractingCommand;
 import com.xdesign.cake.slash.annotations.SlashCommand;
-import com.xdesign.cake.task.StreamsTask;
-import com.xdesign.cake.task.StreamsTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class LearnStreamsCommand extends MessageExtractingCommand {
 
 	private final StreamsController streamsController;
 
-	private MessageComposer messageComposer;
+	private final MessageComposer messageComposer;
 
 	public LearnStreamsCommand( final StreamsController streamsController,
 			final MessageComposer messageComposer ) {
@@ -38,7 +38,7 @@ public class LearnStreamsCommand extends MessageExtractingCommand {
 
 		final String[] arguments = message.split( " " );
 
-		StreamsTaskResult result = streamsController.runLearningMaterial( StreamsTask.builder()
+		final TaskResult result = streamsController.runLearningMaterial( Task.builder()
 				.taskType( TaskType.valueOf( arguments[0] ) )
 				.parameters( Arrays.asList( arguments ).subList( 1, arguments.length ) )
 				.build() );

@@ -17,15 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class CodeRetriever {
-	public String retrieveCodeFor( String uri ) throws IOException {
-		Writer writer = new StringWriter();
-		char[] buffer = new char[2048];
+	public String retrieveCodeFor( final String uri ) throws IOException {
+		final Writer writer = new StringWriter();
+		final char[] buffer = new char[2048];
 
 		final URL url = new URL( uri );
-		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-		try ( InputStream inputStream = httpURLConnection.getInputStream() ) {
+		final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		try ( final InputStream inputStream = httpURLConnection.getInputStream() ) {
 
-			Reader reader = new BufferedReader( new InputStreamReader( inputStream, "UTF-8" ) );
+			final Reader reader = new BufferedReader(
+					new InputStreamReader( inputStream, "UTF-8" ) );
 			int counter;
 			while ( ( counter = reader.read( buffer ) ) != -1 ) {
 				writer.write( buffer, 0, counter );

@@ -62,7 +62,7 @@ public class ContentsBeanPostProcessor implements BeanPostProcessor {
 		return bean;
 	}
 
-	public String generateGitHubURL( String className ) {
+	public String generateGitHubURL( final String className ) {
 		return gitHubUrl + className.replace( ".", "/" ) + JAVA;
 	}
 }

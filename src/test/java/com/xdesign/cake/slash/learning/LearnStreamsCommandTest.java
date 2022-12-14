@@ -19,8 +19,8 @@ import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
 import com.xdesign.cake.controller.StreamsController;
 import com.xdesign.cake.helper.MessageComposer;
-import com.xdesign.cake.task.StreamsTask;
-import com.xdesign.cake.task.StreamsTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,21 +41,21 @@ public class LearnStreamsCommandTest {
 	@Mock
 	private SlashCommandContext slashCommandContext;
 
-	private StreamsTask streamsTask;
+	private Task streamsTask;
 
-	private StreamsTaskResult streamsTaskResult;
+	private TaskResult taskResult;
 
 	@BeforeEach
 	public void setup() {
 
 		this.learnStreamsCommand = new LearnStreamsCommand( streamsController, messageComposer );
 
-		this.streamsTask = StreamsTask.builder()
+		this.streamsTask = Task.builder()
 				.taskType( TaskType.valueOf( "FOREACH" ) )
 				.parameters( List.of( "word1", "word2" ) )
 				.build();
 
-		this.streamsTaskResult = StreamsTaskResult.builder()
+		this.taskResult = TaskResult.builder()
 				.type( TaskType.FOREACH )
 				.value( "word1 word2" )
 				.sourceCode( "Some source code" )
@@ -75,11 +75,11 @@ public class LearnStreamsCommandTest {
 	public void shouldHaveAResponseWithAMessageInIt() {
 
 		when( streamsController.runLearningMaterial( streamsTask ) )
-				.thenReturn( streamsTaskResult );
+				.thenReturn( taskResult );
 
 		when( slashCommandContext.ack( SlashCommandResponse.builder()
 				.responseType( "in_channel" )
-				.text( messageComposer.createMessageForTaskResult(streamsTaskResult) )
+				.text( messageComposer.createMessageForTaskResult( taskResult ) )
 				.build() ) ).thenReturn( Response.builder().body( "blah" ).build() );
 
 		final Response response = learnStreamsCommand.doRespond( "FOREACH word1 word2",

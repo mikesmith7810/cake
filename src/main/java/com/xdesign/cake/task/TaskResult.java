@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Builder
 @Data
-public class OptionalTaskResult {
-	final private TaskType type;
-	final private String value;
+public class TaskResult {
+	private final TaskType type;
+	private final String value;
 	private final String sourceCode;
 
 }

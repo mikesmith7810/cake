@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.domain.Chapter;
-import com.xdesign.cake.task.StreamsTaskResult;
+import com.xdesign.cake.task.TaskResult;
 
 @Component
 public class MessageComposer {
 	public static final String NEWLINE = "\n";
 	public static final String TAB = "\t";
 	public static final String BOLD = "*";
-	public static final String ITALIC = "_";
 	public static final String CODEBLOCK = "```";
 
 	private ContentsStore contentStore;
@@ -33,7 +32,7 @@ public class MessageComposer {
 				.toString();
 	}
 
-	public String createMessageForTaskResult( final StreamsTaskResult streamsTaskResult ) {
+	public String createMessageForTaskResult( final TaskResult streamsTaskResult ) {
 
 		return bold( "Result" ) + NEWLINE + streamsTaskResult.getValue() + NEWLINE + bold(
 				"Source Code : " ) + NEWLINE + CODEBLOCK + streamsTaskResult

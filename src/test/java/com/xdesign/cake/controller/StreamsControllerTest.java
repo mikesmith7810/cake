@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import com.xdesign.cake.task.StreamsTask;
-import com.xdesign.cake.task.StreamsTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 import com.xdesign.cake.teachers.StreamsTeacher;
 
@@ -41,20 +41,20 @@ class StreamsControllerTest {
 	@EnumSource(TaskType.class)
 	void shouldDelegateStreamsTaskToTeacher( final TaskType streamsType ) throws Exception {
 
-		final StreamsTask streamsTask = StreamsTask.builder()
+		final Task task = Task.builder()
 				.taskType( streamsType )
 				.parameters( ImmutableList.of( "thisisatest" ) )
 				.build();
 
-		final StreamsTaskResult streamsTaskResult = StreamsTaskResult.builder()
+		final TaskResult taskResult = TaskResult.builder()
 				.type( streamsType )
 				.value( "tsetasisiht" )
 				.build();
 
-		when( streamsTeacher.teachThis( streamsTask ) ).thenReturn( streamsTaskResult );
+		when( streamsTeacher.teachThis( task ) ).thenReturn( taskResult );
 
 		this.mockMvc
-				.perform( get( "/java/streams" ).content( asJsonString( streamsTask ) )
+				.perform( get( "/java/streams" ).content( asJsonString( task ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
@@ -62,7 +62,7 @@ class StreamsControllerTest {
 				.andExpect( jsonPath( "$.type" ).value( streamsType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( streamsTeacher, times( 1 ) ).teachThis( streamsTask );
+		verify( streamsTeacher, times( 1 ) ).teachThis( task );
 	}
 
 }

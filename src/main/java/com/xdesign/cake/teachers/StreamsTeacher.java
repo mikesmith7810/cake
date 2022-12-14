@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.demonstrators.streams.ForEachDemonstrator;
-import com.xdesign.cake.task.StreamsTask;
-import com.xdesign.cake.task.StreamsTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 @Component
@@ -24,8 +24,8 @@ public class StreamsTeacher {
 		this.contentsStore = contentsStore;
 	}
 
-	public StreamsTaskResult teachThis( StreamsTask task ) {
-		return StreamsTaskResult.builder()
+	public TaskResult teachThis( Task task ) {
+		return TaskResult.builder()
 				.type( task.getTaskType() )
 				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
 				.sourceCode( contentsStore.retrieveContents()

@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import com.xdesign.cake.task.OptionalTask;
-import com.xdesign.cake.task.OptionalTaskResult;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 import com.xdesign.cake.teachers.OptionalTeacher;
 
@@ -41,20 +41,20 @@ class OptionalControllerTest {
 	@EnumSource(TaskType.class)
 	void shouldDelegateOptionalTaskToTeacher( final TaskType optionalType ) throws Exception {
 
-		final OptionalTask optionalTask = OptionalTask.builder()
+		final Task task = Task.builder()
 				.taskType( optionalType )
 				.parameters( ImmutableList.of( "thisisatest" ) )
 				.build();
 
-		final OptionalTaskResult optionalTaskResult = OptionalTaskResult.builder()
+		final TaskResult taskResult = TaskResult.builder()
 				.type( optionalType )
 				.value( "tsetasisiht" )
 				.build();
 
-		when( optionalTeacher.teachThis( optionalTask ) ).thenReturn( optionalTaskResult );
+		when( optionalTeacher.teachThis( task ) ).thenReturn( taskResult );
 
 		this.mockMvc
-				.perform( get( "/java/optional" ).content( asJsonString( optionalTask ) )
+				.perform( get( "/java/optional" ).content( asJsonString( task ) )
 						.contentType( MediaType.APPLICATION_JSON )
 						.accept( MediaType.APPLICATION_JSON ) )
 				.andDo( print() )
@@ -62,7 +62,7 @@ class OptionalControllerTest {
 				.andExpect( jsonPath( "$.type" ).value( optionalType.toString() ) )
 				.andExpect( jsonPath( "$.value" ).value( "tsetasisiht" ) );
 
-		verify( optionalTeacher, times( 1 ) ).teachThis( optionalTask );
+		verify( optionalTeacher, times( 1 ) ).teachThis( task );
 	}
 
 }

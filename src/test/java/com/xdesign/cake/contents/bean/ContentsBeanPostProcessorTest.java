@@ -29,7 +29,7 @@ public class ContentsBeanPostProcessorTest {
 	public void shouldGenerateGitHubURLFromClassName() {
 		final String className = "com.xdesign.cake.demonstrators.optional.CreationDemonstrator";
 
-		String gitHubUrl = contentsBeanPostProcessor.generateGitHubURL( className );
+		final String gitHubUrl = contentsBeanPostProcessor.generateGitHubURL( className );
 
 		assertThat( gitHubUrl ).isEqualTo(
 				"http://www.test.com/reponame/app/src/main/java/com/xdesign/cake/demonstrators/optional/CreationDemonstrator.java" );

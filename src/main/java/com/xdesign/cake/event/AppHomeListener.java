@@ -57,8 +57,8 @@ public class AppHomeListener implements BoltEventHandler<AppHomeOpenedEvent> {
 		return view( view -> view.type( "home" )
 				.blocks( asBlocks( header( h -> h.text( plainText( "Welcome!" ) ) ),
 						section( section -> section.text( markdownText( mt -> mt.text(
-								"Hi there, " + ". I'm your Cake giving app :robot_face:.\n" ) ) ) ),
+								"Hi there, " + ". I'm your friendly app for brushing up on your Java skills :robot_face:.\n" ) ) ) ),
 						divider(), section( section -> section.text( markdownText(
-								mt -> mt.text( "Happy Cake Giving :tada:!" ) ) ) ) ) ) );
+								mt -> mt.text( "Happy Learning :tada:!" ) ) ) ) ) ) );
 	}
 }
