@@ -16,7 +16,8 @@ public class CreationDemonstrator extends Demonstrator {
 			api = "/java/optional",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/optional/CreationDemonstrator.java",
 			chapter = "Optionals",
-			taskType = TaskType.CREATION)
+			taskType = TaskType.CREATION,
+			slashCommand = "/learnjavaoptionals CREATION")
 	public Optional<String> demoFunction( final List<String> input ) {
 		final Optional<String> optional = Optional.of( input.get( 0 ) );
 

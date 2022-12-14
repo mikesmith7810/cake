@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.slack.api.Slack;
+import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
@@ -20,14 +21,14 @@ import com.xdesign.cake.task.TaskType;
 
 import lombok.extern.slf4j.Slf4j;
 
-@SlashCommand("learnjava")
+@SlashCommand("learnjavastreams")
 @Slf4j
 @Component
-public class LearnCommand extends MessageExtractingCommand {
+public class LearnStreamsCommand extends MessageExtractingCommand {
 
 	private final StreamsController streamsController;
 
-	public LearnCommand( final StreamsController streamsController ) {
+	public LearnStreamsCommand( final StreamsController streamsController ) {
 		this.streamsController = streamsController;
 	}
 
@@ -44,12 +45,9 @@ public class LearnCommand extends MessageExtractingCommand {
 				.parameters( List.of( "Mike", "is", "cool" ) )
 				.build() );
 
-		//		ChatPostMessageResponse response = methods.chatPostMessage( ChatPostMessageRequest.builder()
-		//				.channel( "#caketest" )
-		//				.text(result.getValue() )
-		//				.build() );
-
-		return context.ack( res -> res.responseType( "in_channel" )
-				.text( result.getValue() + result.getType() ) );
+		return context.ack( SlashCommandResponse.builder()
+				.responseType( "in_channel" )
+				.text( result.getValue() + result.getType() )
+				.build() );
 	}
 }

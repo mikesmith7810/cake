@@ -16,7 +16,8 @@ public class SupplierDemonstrator extends Demonstrator {
 			api = "/java/functionalinterface",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/SupplierDemonstrator.java",
 			chapter = "Functional Interfaces",
-			taskType = TaskType.SUPPLIER)
+			taskType = TaskType.SUPPLIER,
+			slashCommand = "/learnjavafunctions SUPPLIER")
 	public String demoFunction() {
 		final Supplier<String> dateSupplier = () -> LocalDate.now()
 				.format( DateTimeFormatter.ISO_LOCAL_DATE );

@@ -51,8 +51,7 @@ class OptionalControllerTest {
 				.value( "tsetasisiht" )
 				.build();
 
-		when( optionalTeacher.teachThis( optionalTask ) )
-				.thenReturn( optionalTaskResult );
+		when( optionalTeacher.teachThis( optionalTask ) ).thenReturn( optionalTaskResult );
 
 		this.mockMvc
 				.perform( get( "/java/optional" ).content( asJsonString( optionalTask ) )

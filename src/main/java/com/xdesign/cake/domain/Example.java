@@ -15,4 +15,5 @@ public class Example {
 	private final String chapter;
 	private String sourceCode;
 	private final TaskType taskType;
+	private final String slashCommand;
 }

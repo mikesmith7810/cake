@@ -15,7 +15,8 @@ public class ForEachDemonstrator extends Demonstrator {
 			api = "/java/streams",
 			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/streams/ForEachDemonstrator.java",
 			chapter = "Streams",
-			taskType = TaskType.FOREACH)
+			taskType = TaskType.FOREACH,
+			slashCommand = "/learnjavastreams FOREACH word1 word2")
 	public String demoFunction( final List<String> input ) {
 
 		input.stream().forEach( word -> System.out.println( word ) );

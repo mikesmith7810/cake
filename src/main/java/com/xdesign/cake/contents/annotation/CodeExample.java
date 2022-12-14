@@ -22,4 +22,6 @@ public @interface CodeExample {
 
 	TaskType taskType();
 
+	String slashCommand();
+
 }

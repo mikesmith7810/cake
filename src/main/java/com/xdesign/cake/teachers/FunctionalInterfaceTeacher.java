@@ -39,8 +39,7 @@ public class FunctionalInterfaceTeacher {
 		this.contentsStore = contentsStore;
 	}
 
-	public FunctionalInterfaceTaskResult teachThis(
-			final FunctionalInterfaceTask functionTask ) {
+	public FunctionalInterfaceTaskResult teachThis( final FunctionalInterfaceTask functionTask ) {
 
 		return FunctionalInterfaceTaskResult.builder()
 				.type( functionTask.getTaskType() )

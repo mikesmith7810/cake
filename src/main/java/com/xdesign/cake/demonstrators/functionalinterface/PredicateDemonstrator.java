@@ -16,7 +16,8 @@ public class PredicateDemonstrator extends Demonstrator {
 			api = "/java/functionalinterface",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/PredicateDemonstrator.java",
 			chapter = "Functional Interfaces",
-			taskType = TaskType.PREDICATE)
+			taskType = TaskType.PREDICATE,
+			slashCommand = "/learnjavafunctions PREDICATE super red star")
 	public boolean demoFunction( final List<String> word ) {
 		final Predicate<String> startsWithPredicate = w -> w.startsWith( "S" );
 
@@ -28,7 +29,8 @@ public class PredicateDemonstrator extends Demonstrator {
 			api = "/java/functionalinterface",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/PredicateDemonstrator.java",
 			chapter = "Functional Interfaces",
-			taskType = TaskType.PREDICATE2)
+			taskType = TaskType.PREDICATE2,
+			slashCommand = "/learnjavafunctions PREDICATE2 S super red star")
 	public List<String> demoFunction( final List<String> words, final String letter ) {
 		return words.stream()
 				.filter( word -> filterListByLetter( word, w -> w.startsWith( letter ) ) )
