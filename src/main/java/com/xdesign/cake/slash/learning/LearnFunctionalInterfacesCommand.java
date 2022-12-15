@@ -8,7 +8,7 @@ import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
-import com.xdesign.cake.controller.StreamsController;
+import com.xdesign.cake.controller.FunctionalInterfacesController;
 import com.xdesign.cake.helper.MessageComposer;
 import com.xdesign.cake.slash.MessageExtractingCommand;
 import com.xdesign.cake.slash.annotations.SlashCommand;
@@ -18,18 +18,18 @@ import com.xdesign.cake.task.TaskType;
 
 import lombok.extern.slf4j.Slf4j;
 
-@SlashCommand("learnjava/streams")
+@SlashCommand("learnjava/functionalinterfaces")
 @Slf4j
 @Component
-public class LearnStreamsCommand extends MessageExtractingCommand {
+public class LearnFunctionalInterfacesCommand extends MessageExtractingCommand {
 
-	private final StreamsController streamsController;
+	private final FunctionalInterfacesController functionalInterfacesController;
 
 	private final MessageComposer messageComposer;
 
-	public LearnStreamsCommand( final StreamsController streamsController,
-			final MessageComposer messageComposer ) {
-		this.streamsController = streamsController;
+	public LearnFunctionalInterfacesCommand(final FunctionalInterfacesController functionalInterfacesController,
+                                            final MessageComposer messageComposer ) {
+		this.functionalInterfacesController = functionalInterfacesController;
 		this.messageComposer = messageComposer;
 	}
 
@@ -38,7 +38,7 @@ public class LearnStreamsCommand extends MessageExtractingCommand {
 
 		final String[] arguments = message.split( " " );
 
-		final TaskResult result = streamsController.runLearningMaterial( Task.builder()
+		final TaskResult result = functionalInterfacesController.runLearningMaterial( Task.builder()
 				.taskType( TaskType.valueOf( arguments[0] ) )
 				.parameters( Arrays.asList( arguments ).subList( 1, arguments.length ) )
 				.build() );

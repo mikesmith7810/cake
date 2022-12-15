@@ -1,6 +1,10 @@
 package com.xdesign.cake.teachers;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +19,11 @@ import com.xdesign.cake.demonstrators.functionalinterface.ConsumerDemonstrator;
 import com.xdesign.cake.demonstrators.functionalinterface.FunctionDemonstrator;
 import com.xdesign.cake.demonstrators.functionalinterface.PredicateDemonstrator;
 import com.xdesign.cake.demonstrators.functionalinterface.SupplierDemonstrator;
+import com.xdesign.cake.domain.Chapter;
+import com.xdesign.cake.domain.Contents;
+import com.xdesign.cake.domain.Example;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -77,5 +86,30 @@ public class FunctionalInterfaceTeacherTest {
 				ImmutableList.of( "Super" ) );
 
 		verify( supplierDemonstrator ).demoFunction();
+	}
+
+	@Test
+	public void shouldHaveAResultWithAllFields() {
+		when( functionalInterfacesTeacher.demoFunction( TaskType.FUNCTION,
+				ImmutableList.of( "porsche" ) ) ).thenReturn( "ehcsrop" );
+		when( contentsStore.retrieveContents() ).thenReturn( Contents.builder()
+				.chapters( List.of( Chapter.builder()
+						.examples( List.of( Example.builder()
+								.taskType( TaskType.FUNCTION )
+								.sourceCode( "some code" )
+								.description( "function example" )
+								.build() ) )
+						.build() ) )
+				.build() );
+
+		final TaskResult result = functionalInterfacesTeacher.teachThis( Task.builder()
+				.taskType( TaskType.FUNCTION )
+				.parameters( List.of( "porsche" ) )
+				.build() );
+
+		assertThat( result.getValue() ).isEqualTo( "ehcsrop" );
+		assertThat( result.getType() ).isEqualTo( TaskType.FUNCTION );
+		assertThat( result.getDescription() ).isEqualTo( "function example" );
+		assertThat( result.getSourceCode() ).isEqualTo( "some code" );
 	}
 }

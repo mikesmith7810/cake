@@ -12,7 +12,7 @@ import com.xdesign.cake.task.TaskType;
 @Component
 public class CreationDemonstrator extends Demonstrator {
 	@CodeExample(name = "Optional Creation",
-			description = "Creates an Optional.",
+			description = "Creates an Optional String",
 			api = "/java/optional",
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/optional/CreationDemonstrator.java",
 			chapter = "Optionals",

@@ -49,19 +49,28 @@ public class MessageComposerTest {
 		final String message = messageComposer.createMessageForContents();
 
 		assertThat( message ).isEqualTo( bold( "Test Chapter 1" ) + NEWLINE + TAB + bold(
-				"Red 1 Example" ) + NEWLINE + TAB + TAB + "This is a red test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + CODEBLOCK + "/test/api1" + CODEBLOCK + NEWLINE + TAB + TAB + "slash command example : " + CODEBLOCK + "/slashtest1" + CODEBLOCK + NEWLINE + NEWLINE + TAB + bold(
-						"Green 2 Example" ) + NEWLINE + TAB + TAB + "This is a green test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + CODEBLOCK + "/test/api2" + CODEBLOCK + NEWLINE + TAB + TAB + "slash command example : " + CODEBLOCK + "/slashtest2" + CODEBLOCK + NEWLINE + NEWLINE +
+				"Red 1 Example" ) + NEWLINE + TAB + TAB + "This is a red test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
+						"/test/api1" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
+								"/slashtest1" ) + NEWLINE + NEWLINE + TAB + bold(
+										"Green 2 Example" ) + NEWLINE + TAB + TAB + "This is a green test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
+												"/test/api2" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
+														"/slashtest2" ) + NEWLINE + NEWLINE +
 
 				bold( "Test Chapter 2" ) + NEWLINE + TAB + bold(
-						"Blue 1 Example" ) + NEWLINE + TAB + TAB + "This is a blue test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + CODEBLOCK + "/test/api3" + CODEBLOCK + NEWLINE + TAB + TAB + "slash command example : " + CODEBLOCK + "/slashtest3" + CODEBLOCK + NEWLINE + NEWLINE + TAB + bold(
-								"Yellow 2 Example" ) + NEWLINE + TAB + TAB + "This is a yellow test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + CODEBLOCK + "/test/api4" + CODEBLOCK + NEWLINE + TAB + TAB + "slash command example : " + CODEBLOCK + "/slashtest4" + CODEBLOCK + NEWLINE + NEWLINE );
+						"Blue 1 Example" ) + NEWLINE + TAB + TAB + "This is a blue test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
+								"/test/api3" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
+										"/slashtest3" ) + NEWLINE + NEWLINE + TAB + bold(
+												"Yellow 2 Example" ) + NEWLINE + TAB + TAB + "This is a yellow test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
+														"/test/api4" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
+																"/slashtest4" ) + NEWLINE + NEWLINE );
 	}
 
 	@Test
 	public void shouldCreateMessageForLearning() {
 		final String message = messageComposer.createMessageForTaskResult( taskResult );
 
-		assertThat( message ).isEqualTo( bold( "Result" ) + NEWLINE + "Result" + NEWLINE + bold(
+		assertThat( message ).isEqualTo( bold( "Result : " ) + NEWLINE + "Result" + NEWLINE + bold(
+				"Description : " ) + NEWLINE + "Task description" + NEWLINE + bold(
 				"Source Code : " ) + NEWLINE + CODEBLOCK + "Foreach source code" + CODEBLOCK );
 
 	}
@@ -71,6 +80,7 @@ public class MessageComposerTest {
 				.type( TaskType.FOREACH )
 				.value( "Result" )
 				.sourceCode( "Foreach source code" )
+				.description( "Task description" )
 				.build();
 	}
 

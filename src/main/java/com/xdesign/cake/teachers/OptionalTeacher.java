@@ -40,6 +40,16 @@ public class OptionalTeacher {
 						.findFirst()
 						.get()
 						.getSourceCode() )
+				.description( contentsStore.retrieveContents()
+						.getChapters()
+						.stream()
+						.map( chapter -> chapter.getExamples() )
+						.flatMap( examples -> examples.stream()
+								.filter( example -> example.getTaskType()
+										.equals( task.getTaskType() ) ) )
+						.findFirst()
+						.get()
+						.getDescription() )
 				.build();
 	}
 

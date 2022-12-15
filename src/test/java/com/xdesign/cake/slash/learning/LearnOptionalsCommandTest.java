@@ -17,7 +17,7 @@ import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
-import com.xdesign.cake.controller.StreamsController;
+import com.xdesign.cake.controller.OptionalController;
 import com.xdesign.cake.helper.MessageComposer;
 import com.xdesign.cake.task.Task;
 import com.xdesign.cake.task.TaskResult;
@@ -25,12 +25,12 @@ import com.xdesign.cake.task.TaskType;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class LearnStreamsCommandTest {
+public class LearnOptionalsCommandTest {
 
-	private LearnStreamsCommand learnStreamsCommand;
+	private LearnOptionalCommand learnOptionalCommand;
 
 	@Mock
-	private StreamsController streamsController;
+	private OptionalController optionalController;
 
 	@Mock
 	private MessageComposer messageComposer;
@@ -48,16 +48,16 @@ public class LearnStreamsCommandTest {
 	@BeforeEach
 	public void setup() {
 
-		this.learnStreamsCommand = new LearnStreamsCommand( streamsController, messageComposer );
+		this.learnOptionalCommand = new LearnOptionalCommand(optionalController, messageComposer );
 
 		this.task = Task.builder()
-				.taskType( TaskType.valueOf( "FOREACH" ) )
-				.parameters( List.of( "word1", "word2" ) )
+				.taskType( TaskType.valueOf( "CREATION" ) )
+				.parameters( List.of( "word1" ) )
 				.build();
 
 		this.taskResult = TaskResult.builder()
-				.type( TaskType.FOREACH )
-				.value( "word1 word2" )
+				.type( TaskType.CREATION )
+				.value( "word1" )
 				.sourceCode( "Some source code" )
 				.description( ( "task description" ) )
 				.build();
@@ -66,16 +66,16 @@ public class LearnStreamsCommandTest {
 	@Test
 	public void shouldCallController() {
 
-		final Response response = learnStreamsCommand.doRespond( "FOREACH word1 word2",
+		final Response response = learnOptionalCommand.doRespond( "CREATION word1",
 				slashCommandRequest, slashCommandContext );
 
-		verify( streamsController ).runLearningMaterial( task );
+		verify(optionalController).runLearningMaterial(task);
 	}
 
 	@Test
 	public void shouldHaveAResponseWithAMessageInIt() {
 
-		when( streamsController.runLearningMaterial( task ) )
+		when( optionalController.runLearningMaterial(task) )
 				.thenReturn( taskResult );
 
 		when( slashCommandContext.ack( SlashCommandResponse.builder()
@@ -83,7 +83,7 @@ public class LearnStreamsCommandTest {
 				.text( messageComposer.createMessageForTaskResult( taskResult ) )
 				.build() ) ).thenReturn( Response.builder().body( "blah" ).build() );
 
-		final Response response = learnStreamsCommand.doRespond( "FOREACH word1 word2",
+		final Response response = learnOptionalCommand.doRespond( "CREATION word1",
 				slashCommandRequest, slashCommandContext );
 
 		assertThat( response.getBody() ).isEqualTo( "blah" );

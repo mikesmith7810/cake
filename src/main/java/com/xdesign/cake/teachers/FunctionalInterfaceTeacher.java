@@ -54,6 +54,16 @@ public class FunctionalInterfaceTeacher {
 						.findFirst()
 						.get()
 						.getSourceCode() )
+				.description( contentsStore.retrieveContents()
+						.getChapters()
+						.stream()
+						.map( chapter -> chapter.getExamples() )
+						.flatMap( examples -> examples.stream()
+								.filter( example -> example.getTaskType()
+										.equals( task.getTaskType() ) ) )
+						.findFirst()
+						.get()
+						.getDescription() )
 				.build();
 	}
 
@@ -66,6 +76,9 @@ public class FunctionalInterfaceTeacher {
 			return consumerDemonstrator.demoFunction( input );
 		case PREDICATE:
 			return String.valueOf( predicateDemonstrator.demoFunction( input ) );
+		case PREDICATE2:
+			return String.valueOf( predicateDemonstrator.demoFunction( input.get( 0 ),
+					input.subList( 1, input.size() ) ) );
 		case SUPPLIER:
 			return supplierDemonstrator.demoFunction();
 		default:

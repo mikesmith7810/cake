@@ -8,7 +8,7 @@ import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.builtin.SlashCommandContext;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
-import com.xdesign.cake.controller.StreamsController;
+import com.xdesign.cake.controller.OptionalController;
 import com.xdesign.cake.helper.MessageComposer;
 import com.xdesign.cake.slash.MessageExtractingCommand;
 import com.xdesign.cake.slash.annotations.SlashCommand;
@@ -18,18 +18,18 @@ import com.xdesign.cake.task.TaskType;
 
 import lombok.extern.slf4j.Slf4j;
 
-@SlashCommand("learnjava/streams")
+@SlashCommand("learnjava/optionals")
 @Slf4j
 @Component
-public class LearnStreamsCommand extends MessageExtractingCommand {
+public class LearnOptionalCommand extends MessageExtractingCommand {
 
-	private final StreamsController streamsController;
+	private final OptionalController optionalController;
 
 	private final MessageComposer messageComposer;
 
-	public LearnStreamsCommand( final StreamsController streamsController,
+	public LearnOptionalCommand( final OptionalController optionalController,
 			final MessageComposer messageComposer ) {
-		this.streamsController = streamsController;
+		this.optionalController = optionalController;
 		this.messageComposer = messageComposer;
 	}
 
@@ -38,7 +38,7 @@ public class LearnStreamsCommand extends MessageExtractingCommand {
 
 		final String[] arguments = message.split( " " );
 
-		final TaskResult result = streamsController.runLearningMaterial( Task.builder()
+		final TaskResult result = optionalController.runLearningMaterial( Task.builder()
 				.taskType( TaskType.valueOf( arguments[0] ) )
 				.parameters( Arrays.asList( arguments ).subList( 1, arguments.length ) )
 				.build() );

@@ -1,8 +1,10 @@
 package com.xdesign.cake.teachers;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.google.common.collect.ImmutableList;
 import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.demonstrators.optional.CreationDemonstrator;
+import com.xdesign.cake.domain.Chapter;
+import com.xdesign.cake.domain.Contents;
+import com.xdesign.cake.domain.Example;
+import com.xdesign.cake.task.Task;
+import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -45,4 +52,28 @@ public class OptionalTeacherTest {
 		verify( creationDemonstrator ).demoFunction( ImmutableList.of( "iamatest" ) );
 	}
 
+	@Test
+	public void shouldHaveAResultWithAllFields() {
+		when( creationDemonstrator.demoFunction( ImmutableList.of( "word1" ) ) )
+				.thenReturn( Optional.of( "word1" ) );
+		when( contentsStore.retrieveContents() ).thenReturn( Contents.builder()
+				.chapters( List.of( Chapter.builder()
+						.examples( List.of( Example.builder()
+								.taskType( TaskType.CREATION )
+								.sourceCode( "some code" )
+								.description( "creation example" )
+								.build() ) )
+						.build() ) )
+				.build() );
+
+		final TaskResult result = optionalTeacher.teachThis( Task.builder()
+				.taskType( TaskType.CREATION )
+				.parameters( List.of( "word1" ) )
+				.build() );
+
+		assertThat( result.getValue() ).isEqualTo( "word1" );
+		assertThat( result.getType() ).isEqualTo( TaskType.CREATION );
+		assertThat( result.getDescription() ).isEqualTo( "creation example" );
+		assertThat( result.getSourceCode() ).isEqualTo( "some code" );
+	}
 }

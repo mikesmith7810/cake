@@ -16,7 +16,7 @@ public class ConsumerDemonstrator extends Demonstrator {
 			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/ConsumerDemonstrator.java",
 			chapter = "Functional Interfaces",
 			taskType = TaskType.CONSUMER,
-			slashCommand = "/learnjavafunctions CONSUMER word1")
+			slashCommand = "/learnjava/functionalinterfaces CONSUMER word1")
 	public String demoFunction( final List<String> input ) {
 		final Consumer<String> consumer = string -> System.out.println( string );
 

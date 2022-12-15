@@ -32,10 +32,11 @@ public class MessageComposer {
 				.toString();
 	}
 
-	public String createMessageForTaskResult( final TaskResult streamsTaskResult ) {
+	public String createMessageForTaskResult( final TaskResult taskResult ) {
 
-		return bold( "Result" ) + NEWLINE + streamsTaskResult.getValue() + NEWLINE + bold(
-				"Source Code : " ) + NEWLINE + CODEBLOCK + streamsTaskResult
+		return bold( "Result : " ) + NEWLINE + taskResult.getValue() + NEWLINE + bold(
+				"Description : " ) + NEWLINE + taskResult.getDescription() + NEWLINE + bold(
+						"Source Code : " ) + NEWLINE + CODEBLOCK + taskResult
 						.getSourceCode() + CODEBLOCK;
 	}
 
@@ -44,9 +45,9 @@ public class MessageComposer {
 		return chapter -> bold( chapter.getName() ) + NEWLINE + chapter.getExamples()
 				.stream()
 				.map( example -> TAB + bold( example.getName() ) + NEWLINE + TAB + TAB + example
-						.getDescription() + NEWLINE + TAB + TAB + "rest endpoint : " + CODEBLOCK + example
-								.getApiCall() + CODEBLOCK + NEWLINE + TAB + TAB + "slash command example : " + CODEBLOCK + example
-										.getSlashCommand() + CODEBLOCK + NEWLINE + NEWLINE )
+						.getDescription() + NEWLINE + TAB + TAB + "rest endpoint : " + bold( example
+								.getApiCall() ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
+										example.getSlashCommand() ) + NEWLINE + NEWLINE )
 				.collect( StringBuilder::new, StringBuilder::append, StringBuilder::append );
 	}
 
