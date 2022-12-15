@@ -17,7 +17,7 @@ public class CreationDemonstrator extends Demonstrator {
 			chapter = "Optionals",
 			taskType = TaskType.CREATION,
 			slashCommand = "/learnjava/optionals",
-			slashParameters = "CREATION")
+			slashParameters = "CREATION word1")
 
 	public Optional<String> demoFunction( final List<String> input ) {
 		final Optional<String> optional = Optional.of( input.get( 0 ) );

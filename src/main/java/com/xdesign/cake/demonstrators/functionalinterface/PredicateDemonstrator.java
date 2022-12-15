@@ -32,6 +32,7 @@ public class PredicateDemonstrator extends Demonstrator {
 			taskType = TaskType.PREDICATE2,
 			slashCommand = "/learnjava/functionalinterfaces",
 			slashParameters = "PREDICATE2 s super red star")
+
 	public List<String> demoFunction( final String letter, final List<String> words ) {
 		return words.stream()
 				.filter( word -> filterListByLetter( word, w -> w.startsWith( letter ) ) )
