@@ -13,10 +13,11 @@ public class ForEachDemonstrator extends Demonstrator {
 	@CodeExample(name = "Streams ForEach",
 			description = "Outputs list of strings to console",
 			api = "/java/streams",
-			githubLocation = "https://github.com/mikesmith7810/cake/blob/master/src/main/java/com/xdesign/cake/streams/ForEachDemonstrator.java",
 			chapter = "Streams",
 			taskType = TaskType.FOREACH,
-			slashCommand = "/learnjava/streams FOREACH word1 word2")
+			slashCommand = "/learnjava/streams",
+			slashParameters = "FOREACH word1 word2")
+
 	public String demoFunction( final List<String> input ) {
 
 		input.stream().forEach( word -> System.out.println( word ) );

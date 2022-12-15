@@ -36,7 +36,7 @@ public class PredicateDemonstratorTest {
 
 		final List<String> words = ImmutableList.of( "Song", "Stack", "Car", "Engine", "Strum" );
 
-		final List<String> filteredWords = predicateDemonstrator.demoFunction( words, "S" );
+		final List<String> filteredWords = predicateDemonstrator.demoFunction( "S", words );
 
 		assertThat( filteredWords ).hasSize( 3 );
 		assertThat( filteredWords ).filteredOn( word -> word.startsWith( "S" ) );

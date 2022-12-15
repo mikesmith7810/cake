@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import static com.xdesign.cake.helper.MessageComposer.CODEBLOCK;
 import static com.xdesign.cake.helper.MessageComposer.NEWLINE;
+import static com.xdesign.cake.helper.MessageComposer.SPACE;
 import static com.xdesign.cake.helper.MessageComposer.TAB;
 import static com.xdesign.cake.helper.MessageComposer.bold;
 
@@ -51,18 +52,18 @@ public class MessageComposerTest {
 		assertThat( message ).isEqualTo( bold( "Test Chapter 1" ) + NEWLINE + TAB + bold(
 				"Red 1 Example" ) + NEWLINE + TAB + TAB + "This is a red test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
 						"/test/api1" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
-								"/slashtest1" ) + NEWLINE + NEWLINE + TAB + bold(
+								"/slashtest1" ) + SPACE + "FUNCTON word1" + NEWLINE + NEWLINE + TAB + bold(
 										"Green 2 Example" ) + NEWLINE + TAB + TAB + "This is a green test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
 												"/test/api2" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
-														"/slashtest2" ) + NEWLINE + NEWLINE +
+														"/slashtest2" ) + SPACE + "FUNCTON word1" + NEWLINE + NEWLINE +
 
 				bold( "Test Chapter 2" ) + NEWLINE + TAB + bold(
 						"Blue 1 Example" ) + NEWLINE + TAB + TAB + "This is a blue test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
 								"/test/api3" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
-										"/slashtest3" ) + NEWLINE + NEWLINE + TAB + bold(
+										"/slashtest3" ) + SPACE + "FUNCTON word1" + NEWLINE + NEWLINE + TAB + bold(
 												"Yellow 2 Example" ) + NEWLINE + TAB + TAB + "This is a yellow test piece of code" + NEWLINE + TAB + TAB + "rest endpoint : " + bold(
 														"/test/api4" ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
-																"/slashtest4" ) + NEWLINE + NEWLINE );
+																"/slashtest4" ) + SPACE + "FUNCTON word1" + NEWLINE + NEWLINE );
 	}
 
 	@Test
@@ -94,6 +95,7 @@ public class MessageComposerTest {
 												.name( "Red 1 Example" )
 												.description( "This is a red test piece of code" )
 												.slashCommand( "/slashtest1" )
+												.slashParameters( "FUNCTON word1" )
 												.apiCall( "/test/api1" )
 												.sourceCode( "Foreach source code" )
 												.taskType( TaskType.FOREACH )
@@ -102,6 +104,7 @@ public class MessageComposerTest {
 												.name( "Green 2 Example" )
 												.description( "This is a green test piece of code" )
 												.slashCommand( "/slashtest2" )
+												.slashParameters( "FUNCTON word1" )
 												.apiCall( "/test/api2" )
 												.sourceCode( "Predicate source code" )
 												.taskType( TaskType.PREDICATE )
@@ -114,6 +117,7 @@ public class MessageComposerTest {
 												.name( "Blue 1 Example" )
 												.description( "This is a blue test piece of code" )
 												.slashCommand( "/slashtest3" )
+												.slashParameters( "FUNCTON word1" )
 												.apiCall( "/test/api3" )
 												.taskType( TaskType.SUPPLIER )
 												.sourceCode( "Supplier source code" )
@@ -121,6 +125,7 @@ public class MessageComposerTest {
 										Example.builder()
 												.name( "Yellow 2 Example" )
 												.slashCommand( "/slashtest4" )
+												.slashParameters( "FUNCTON word1" )
 												.apiCall( "/test/api4" )
 												.description(
 														"This is a yellow test piece of code" )

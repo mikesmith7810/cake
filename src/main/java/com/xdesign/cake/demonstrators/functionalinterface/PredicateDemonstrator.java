@@ -14,10 +14,11 @@ public class PredicateDemonstrator extends Demonstrator {
 	@CodeExample(name = "Predicate",
 			description = "Predicate Code Example. Filters words starting with 'S'.",
 			api = "/java/functionalinterface",
-			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/PredicateDemonstrator.java",
 			chapter = "Functional Interfaces",
 			taskType = TaskType.PREDICATE,
-			slashCommand = "/learnjava/functionalinterfaces PREDICATE super red star")
+			slashCommand = "/learnjava/functionalinterfaces",
+			slashParameters = "PREDICATE super red star")
+
 	public boolean demoFunction( final List<String> word ) {
 		final Predicate<String> startsWithPredicate = w -> w.startsWith( "S" );
 
@@ -27,10 +28,10 @@ public class PredicateDemonstrator extends Demonstrator {
 	@CodeExample(name = "Predicate",
 			description = "Predicate Code Example. Filters supplied words starting with supplied letter.",
 			api = "/java/functionalinterface",
-			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/PredicateDemonstrator.java",
 			chapter = "Functional Interfaces",
 			taskType = TaskType.PREDICATE2,
-			slashCommand = "/learnjava/functionalinterfaces PREDICATE2 S super red star")
+			slashCommand = "/learnjava/functionalinterfaces",
+			slashParameters = "PREDICATE2 s super red star")
 	public List<String> demoFunction( final String letter, final List<String> words ) {
 		return words.stream()
 				.filter( word -> filterListByLetter( word, w -> w.startsWith( letter ) ) )

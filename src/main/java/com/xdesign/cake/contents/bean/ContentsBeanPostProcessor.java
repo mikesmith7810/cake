@@ -53,6 +53,7 @@ public class ContentsBeanPostProcessor implements BeanPostProcessor {
 						.chapter( annotation.chapter() )
 						.taskType( annotation.taskType() )
 						.slashCommand( annotation.slashCommand() )
+						.slashParameters( annotation.slashParameters() )
 						.build() )
 				.collect( Collectors.toList() );
 

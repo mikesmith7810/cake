@@ -18,10 +18,10 @@ public @interface CodeExample {
 
 	String chapter();
 
-	String githubLocation();
-
 	TaskType taskType();
 
 	String slashCommand();
+
+	String slashParameters();
 
 }

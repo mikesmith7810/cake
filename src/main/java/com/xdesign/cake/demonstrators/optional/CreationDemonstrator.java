@@ -14,10 +14,11 @@ public class CreationDemonstrator extends Demonstrator {
 	@CodeExample(name = "Optional Creation",
 			description = "Creates an Optional String",
 			api = "/java/optional",
-			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/optional/CreationDemonstrator.java",
 			chapter = "Optionals",
 			taskType = TaskType.CREATION,
-			slashCommand = "/learnjavaoptionals CREATION")
+			slashCommand = "/learnjava/optionals",
+			slashParameters = "CREATION")
+
 	public Optional<String> demoFunction( final List<String> input ) {
 		final Optional<String> optional = Optional.of( input.get( 0 ) );
 

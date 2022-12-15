@@ -15,6 +15,7 @@ public class MessageComposer {
 	public static final String TAB = "\t";
 	public static final String BOLD = "*";
 	public static final String CODEBLOCK = "```";
+	public static final String SPACE = " ";
 
 	private ContentsStore contentStore;
 
@@ -47,7 +48,8 @@ public class MessageComposer {
 				.map( example -> TAB + bold( example.getName() ) + NEWLINE + TAB + TAB + example
 						.getDescription() + NEWLINE + TAB + TAB + "rest endpoint : " + bold( example
 								.getApiCall() ) + NEWLINE + TAB + TAB + "slash command example : " + bold(
-										example.getSlashCommand() ) + NEWLINE + NEWLINE )
+										example.getSlashCommand() ) + SPACE + example
+												.getSlashParameters() + NEWLINE + NEWLINE )
 				.collect( StringBuilder::new, StringBuilder::append, StringBuilder::append );
 	}
 

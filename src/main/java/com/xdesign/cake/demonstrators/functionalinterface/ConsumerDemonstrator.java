@@ -13,10 +13,11 @@ public class ConsumerDemonstrator extends Demonstrator {
 	@CodeExample(name = "Consumer",
 			description = "Consumer Code Example. Sends a message to the console",
 			api = "/java/functionalinterface",
-			githubLocation = "https://raw.githubusercontent.com/mikesmith7810/cake/master/src/main/java/com/xdesign/cake/demonstrators/functionalinterface/ConsumerDemonstrator.java",
 			chapter = "Functional Interfaces",
 			taskType = TaskType.CONSUMER,
-			slashCommand = "/learnjava/functionalinterfaces CONSUMER word1")
+			slashCommand = "/learnjava/functionalinterfaces",
+			slashParameters = "CONSUMER word1")
+
 	public String demoFunction( final List<String> input ) {
 		final Consumer<String> consumer = string -> System.out.println( string );
 

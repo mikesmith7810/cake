@@ -16,4 +16,5 @@ public class Example {
 	private String sourceCode;
 	private final TaskType taskType;
 	private final String slashCommand;
+	private final String slashParameters;
 }
