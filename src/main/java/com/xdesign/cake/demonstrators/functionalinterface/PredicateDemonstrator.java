@@ -12,26 +12,26 @@ import com.xdesign.cake.task.TaskType;
 @Component
 public class PredicateDemonstrator extends Demonstrator {
 	@CodeExample(name = "Predicate",
-			description = "Predicate Code Example. Filters words starting with 'S'.",
+			description = "Predicate Code Example. Checks to see if a word starts with 's'.",
 			api = "/java/functionalinterface",
 			chapter = "Functional Interfaces",
 			taskType = TaskType.PREDICATE,
 			slashCommand = "/learnjava/functionalinterfaces",
-			slashParameters = "PREDICATE super red star")
+			slashParameters = "PREDICATE super")
 
 	public boolean demoFunction( final List<String> word ) {
-		final Predicate<String> startsWithPredicate = w -> w.startsWith( "S" );
+		final Predicate<String> startsWithPredicate = w -> w.startsWith( "s" );
 
 		return startsWithPredicate.test( word.get( 0 ) );
 	}
 
-	@CodeExample(name = "Predicate",
-			description = "Predicate Code Example. Filters supplied words starting with supplied letter.",
+	@CodeExample(name = "Predicate2",
+			description = "Predicate2 Code Example. Filters supplied words starting with supplied letter.",
 			api = "/java/functionalinterface",
 			chapter = "Functional Interfaces",
 			taskType = TaskType.PREDICATE2,
 			slashCommand = "/learnjava/functionalinterfaces",
-			slashParameters = "PREDICATE2 s super red star")
+			slashParameters = "PREDICATE2 s stratocaster guitar gibson super jackson")
 
 	public List<String> demoFunction( final String letter, final List<String> words ) {
 		return words.stream()

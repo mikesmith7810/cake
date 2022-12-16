@@ -22,9 +22,6 @@ import com.slack.api.model.view.View;
 
 import lombok.Data;
 
-/**
- * Handles opening the application's home page (profile on slack).
- */
 @Component
 @Data
 public class AppHomeListener implements BoltEventHandler<AppHomeOpenedEvent> {
@@ -41,24 +38,14 @@ public class AppHomeListener implements BoltEventHandler<AppHomeOpenedEvent> {
 		return context.ack();
 	}
 
-	/**
-	 * Builds a {@link View} to be displayed when the application's home page.
-	 * <p>
-	 * This {@code View} will detail how to use the application, as well as some
-	 * helpful links for queries.
-	 *
-	 * @param event
-	 *            the {@code event} triggering the opening of the application home
-	 *            page
-	 *
-	 * @return the new {@code View}
-	 */
+
 	private View existingUserView( final EventsApiPayload<AppHomeOpenedEvent> event ) {
 		return view( view -> view.type( "home" )
 				.blocks( asBlocks( header( h -> h.text( plainText( "Welcome!" ) ) ),
 						section( section -> section.text( markdownText( mt -> mt.text(
-								"Hi there, " + ". I'm your friendly app for brushing up on your Java skills :robot_face:.\n" ) ) ) ),
+								"Hi there, " + " I'm your friendly app for brushing up on your Java skills :robot_face:.\n" ) ) ) ),
 						divider(), section( section -> section.text( markdownText(
-								mt -> mt.text( "Happy Learning :tada:!" ) ) ) ) ) ) );
+								mt -> mt.text(
+										"Hit slash command */contents* for a list of resources.\n" + "Happy Learning :tada:!" ) ) ) ) ) ) );
 	}
 }

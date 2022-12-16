@@ -95,6 +95,50 @@
 			"response": []
 		},
 		{
+			"name": "java learning optional creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"taskType\": \"CREATION\",\n  \"parameters\": [\n    \"Raspberry\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/optional",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"optional"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "java learning consumer",
 			"event": [
 				{
@@ -133,6 +177,50 @@
 					"path": [
 						"java",
 						"functionalinterface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "java learning streams foreach",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"taskType\": \"FOREACH\",\n  \"parameters\": [\n    \"Hi There\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/streams",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"streams"
 					]
 				}
 			},
@@ -209,7 +297,51 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"taskType\": \"PREDICATE\",\n  \"parameters\": [\n    \"Super\"\n  ]\n}"
+					"raw": "{\n  \"taskType\": \"PREDICATE\",\n  \"parameters\": [\n    \"super\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/java/functionalinterface",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"java",
+						"functionalinterface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "java learning predicate2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"taskType\": \"PREDICATE2\",\n  \"parameters\": [\n      \"s\",\n    \"marshall\",\n    \"super\",\n    \"charvelle\"\n  ]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/java/functionalinterface",
@@ -431,6 +563,45 @@
 						"admin",
 						"cake",
 						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get oauthtoken",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "oauth step1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://slack.com/oauth/v2/authorize?scope=chat:write,commands&client_id=2213511230.4096655450903",
+					"protocol": "https",
+					"host": [
+						"slack",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"v2",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "scope",
+							"value": "chat:write,commands"
+						},
+						{
+							"key": "client_id",
+							"value": "2213511230.4096655450903"
+						}
 					]
 				}
 			},

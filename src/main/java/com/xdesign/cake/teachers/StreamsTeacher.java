@@ -4,10 +4,12 @@ import static com.xdesign.cake.teachers.FunctionalInterfaceTeacher.TYPE_NOT_RECO
 
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 import com.xdesign.cake.contents.ContentsStore;
 import com.xdesign.cake.demonstrators.streams.ForEachDemonstrator;
+import com.xdesign.cake.domain.Example;
 import com.xdesign.cake.task.Task;
 import com.xdesign.cake.task.TaskResult;
 import com.xdesign.cake.task.TaskType;
@@ -24,29 +26,17 @@ public class StreamsTeacher {
 		this.contentsStore = contentsStore;
 	}
 
-	public TaskResult teachThis( Task task ) {
+	public TaskResult teachThis( final Task task ) {
+
+		final Example example = getExampleBasedOn( task );
+
 		return TaskResult.builder()
 				.type( task.getTaskType() )
 				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
-				.sourceCode( contentsStore.retrieveContents()
-						.getChapters()
-						.stream()
-						.map( chapter -> chapter.getExamples() )
-						.flatMap( examples -> examples.stream()
-								.filter( example -> example.getTaskType()
-										.equals( task.getTaskType() ) ) )
-						.findFirst()
-						.get()
+				.sourceCode(
+						example
 						.getSourceCode() )
-				.description( contentsStore.retrieveContents()
-						.getChapters()
-						.stream()
-						.map( chapter -> chapter.getExamples() )
-						.flatMap( examples -> examples.stream()
-								.filter( example -> example.getTaskType()
-										.equals( task.getTaskType() ) ) )
-						.findFirst()
-						.get()
+				.description( example
 						.getDescription() )
 				.build();
 	}
@@ -59,5 +49,17 @@ public class StreamsTeacher {
 		default:
 			return TYPE_NOT_RECOGNISED;
 		}
+	}
+
+	@NotNull
+	private Example getExampleBasedOn( final Task task ) {
+		return contentsStore.retrieveContents()
+				.getChapters()
+				.stream()
+				.map( chapter -> chapter.getExamples() )
+				.flatMap( examples -> examples.stream()
+						.filter( example -> example.getTaskType().equals( task.getTaskType() ) ) )
+				.findFirst()
+				.get();
 	}
 }
