@@ -43,18 +43,18 @@ public class OptionalTeacherTest {
 
 	@Test
 	public void shouldCallDemonstrator() {
-		when( creationDemonstrator.demoFunction( ImmutableList.of( "iamatest" ) ) )
+		when( creationDemonstrator.runExampleFor( ImmutableList.of( "iamatest" ) ) )
 				.thenReturn( Optional.of( "iamatest" ) );
 
-		final String result = optionalTeacher.demoFunction( TaskType.CREATION,
+		final String result = optionalTeacher.runTaskBasedUponType( TaskType.CREATION,
 				ImmutableList.of( "iamatest" ) );
 
-		verify( creationDemonstrator ).demoFunction( ImmutableList.of( "iamatest" ) );
+		verify( creationDemonstrator ).runExampleFor( ImmutableList.of( "iamatest" ) );
 	}
 
 	@Test
 	public void shouldHaveAResultWithAllFields() {
-		when( creationDemonstrator.demoFunction( ImmutableList.of( "word1" ) ) )
+		when( creationDemonstrator.runExampleFor( ImmutableList.of( "word1" ) ) )
 				.thenReturn( Optional.of( "word1" ) );
 		when( contentsStore.retrieveContents() ).thenReturn( Contents.builder()
 				.chapters( List.of( Chapter.builder()

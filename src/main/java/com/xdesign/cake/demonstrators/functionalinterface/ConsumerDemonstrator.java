@@ -18,7 +18,7 @@ public class ConsumerDemonstrator extends Demonstrator {
 			slashCommand = "/learnjava/functionalinterfaces",
 			slashParameters = "CONSUMER word1")
 
-	public String demoFunction( final List<String> input ) {
+	public String runExampleFor( final List<String> input ) {
 		final Consumer<String> consumer = string -> System.out.println( string );
 
 		consumer.accept( input.get( 0 ) );

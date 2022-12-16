@@ -24,7 +24,7 @@ public class SupplierDemonstratorTest {
 
 	@Test
 	public void shouldPrintSomeOutputToConsole() {
-		final String date = supplierDemonstrator.demoFunction();
+		final String date = supplierDemonstrator.runExampleFor();
 
 		assertThat( date ).isEqualTo( LocalDate.now().format( DateTimeFormatter.ISO_LOCAL_DATE ) );
 	}

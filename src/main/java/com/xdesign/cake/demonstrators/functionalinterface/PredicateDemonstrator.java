@@ -19,7 +19,7 @@ public class PredicateDemonstrator extends Demonstrator {
 			slashCommand = "/learnjava/functionalinterfaces",
 			slashParameters = "PREDICATE super")
 
-	public boolean demoFunction( final List<String> word ) {
+	public boolean runExampleFor( final List<String> word ) {
 		final Predicate<String> startsWithPredicate = w -> w.startsWith( "s" );
 
 		return startsWithPredicate.test( word.get( 0 ) );
@@ -33,7 +33,7 @@ public class PredicateDemonstrator extends Demonstrator {
 			slashCommand = "/learnjava/functionalinterfaces",
 			slashParameters = "PREDICATE2 s stratocaster guitar gibson super jackson")
 
-	public List<String> demoFunction( final String letter, final List<String> words ) {
+	public List<String> runExampleFor( final String letter, final List<String> words ) {
 		return words.stream()
 				.filter( word -> filterListByLetter( word, w -> w.startsWith( letter ) ) )
 				.collect( Collectors.toList() );

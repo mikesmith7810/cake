@@ -18,7 +18,7 @@ public class FunctionDemonstrator extends Demonstrator {
 			slashCommand = "/learnjava/functionalinterfaces",
 			slashParameters = "FUNCTION raspeberry")
 
-	public String demoFunction( final List<String> input ) {
+	public String runExampleFor( final List<String> input ) {
 		final Function<String, String> reverser = s -> {
 			final StringBuilder stringBuilder = new StringBuilder( s );
 

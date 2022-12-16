@@ -19,7 +19,7 @@ public class CreationDemonstrator extends Demonstrator {
 			slashCommand = "/learnjava/optionals",
 			slashParameters = "CREATION word1")
 
-	public Optional<String> demoFunction( final List<String> input ) {
+	public Optional<String> runExampleFor( final List<String> input ) {
 		final Optional<String> optional = Optional.of( input.get( 0 ) );
 
 		return optional;

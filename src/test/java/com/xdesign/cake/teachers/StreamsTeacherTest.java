@@ -43,19 +43,19 @@ public class StreamsTeacherTest {
 	@Test
 	public void shouldCallDemonstrator() {
 		when( forEachDemonstrator
-				.demoFunction( ImmutableList.of( "iamatest", "andiamatestaswell" ) ) )
+				.runExampleFor( ImmutableList.of( "iamatest", "andiamatestaswell" ) ) )
 						.thenReturn( "iamatest//nandiamatestaswell" );
 
-		final String result = streamsTeacher.demoFunction( TaskType.FOREACH,
+		final String result = streamsTeacher.runTaskBasedUponType( TaskType.FOREACH,
 				ImmutableList.of( "iamatest", "andiamatestaswell" ) );
 
 		verify( forEachDemonstrator )
-				.demoFunction( ImmutableList.of( "iamatest", "andiamatestaswell" ) );
+				.runExampleFor( ImmutableList.of( "iamatest", "andiamatestaswell" ) );
 	}
 
 	@Test
 	public void shouldHaveAResultWithAllFields() {
-		when( forEachDemonstrator.demoFunction( ImmutableList.of( "word1", "word2" ) ) )
+		when( forEachDemonstrator.runExampleFor( ImmutableList.of( "word1", "word2" ) ) )
 				.thenReturn( "OUTPUT TO CONSOLE" );
 		when( contentsStore.retrieveContents() ).thenReturn( Contents.builder()
 				.chapters( List.of( Chapter.builder()

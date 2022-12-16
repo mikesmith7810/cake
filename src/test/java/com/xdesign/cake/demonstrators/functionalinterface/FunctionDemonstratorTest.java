@@ -23,7 +23,7 @@ public class FunctionDemonstratorTest {
 
 	@Test
 	public void shouldReverseAString() {
-		final String result = functionDemonstrator.demoFunction( ImmutableList.of( "example" ) );
+		final String result = functionDemonstrator.runExampleFor( ImmutableList.of( "example" ) );
 
 		assertThat( result ).isEqualTo( "elpmaxe" );
 	}

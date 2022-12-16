@@ -32,7 +32,7 @@ public class StreamsTeacher {
 
 		return TaskResult.builder()
 				.type( task.getTaskType() )
-				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
+				.value( runTaskBasedUponType( task.getTaskType(), task.getParameters() ) )
 				.sourceCode(
 						example
 						.getSourceCode() )
@@ -41,11 +41,11 @@ public class StreamsTeacher {
 				.build();
 	}
 
-	public String demoFunction( final TaskType type, final List<String> input ) {
+	public String runTaskBasedUponType( final TaskType type, final List<String> input ) {
 
 		switch ( type ) {
 		case FOREACH:
-			return forEachDemonstrator.demoFunction( input );
+			return forEachDemonstrator.runExampleFor( input );
 		default:
 			return TYPE_NOT_RECOGNISED;
 		}

@@ -58,39 +58,39 @@ public class FunctionalInterfaceTeacherTest {
 
 	@Test
 	void shouldUseFunctionToReverseString() {
-		final String result = functionalInterfacesTeacher.demoFunction( TaskType.FUNCTION,
+		final String result = functionalInterfacesTeacher.runTaskBasedUponType( TaskType.FUNCTION,
 				ImmutableList.of( "iamatest" ) );
 
-		verify( functionDemonstrator ).demoFunction( ImmutableList.of( "iamatest" ) );
+		verify( functionDemonstrator ).runExampleFor( ImmutableList.of( "iamatest" ) );
 	}
 
 	@Test
 	void shouldUseConsumerToPrintToConsole() {
-		functionalInterfacesTeacher.demoFunction( TaskType.CONSUMER,
+		functionalInterfacesTeacher.runTaskBasedUponType( TaskType.CONSUMER,
 				ImmutableList.of( "Hello World" ) );
 
-		verify( consumerDemonstrator ).demoFunction( ImmutableList.of( "Hello World" ) );
+		verify( consumerDemonstrator ).runExampleFor( ImmutableList.of( "Hello World" ) );
 	}
 
 	@Test
 	void shouldUsePredicateToCheckStringStartsWithLetter() {
-		final String result = functionalInterfacesTeacher.demoFunction( TaskType.PREDICATE,
+		final String result = functionalInterfacesTeacher.runTaskBasedUponType( TaskType.PREDICATE,
 				ImmutableList.of( "Super" ) );
 
-		verify( predicateDemonstrator ).demoFunction( ImmutableList.of( "Super" ) );
+		verify( predicateDemonstrator ).runExampleFor( ImmutableList.of( "Super" ) );
 	}
 
 	@Test
 	void shouldUseSupplierToGetTheCurrentDate() {
-		final String result = functionalInterfacesTeacher.demoFunction( TaskType.SUPPLIER,
+		final String result = functionalInterfacesTeacher.runTaskBasedUponType( TaskType.SUPPLIER,
 				ImmutableList.of( "Super" ) );
 
-		verify( supplierDemonstrator ).demoFunction();
+		verify( supplierDemonstrator ).runExampleFor();
 	}
 
 	@Test
 	public void shouldHaveAResultWithAllFields() {
-		when( functionalInterfacesTeacher.demoFunction( TaskType.FUNCTION,
+		when( functionalInterfacesTeacher.runTaskBasedUponType( TaskType.FUNCTION,
 				ImmutableList.of( "porsche" ) ) ).thenReturn( "ehcsrop" );
 		when( contentsStore.retrieveContents() ).thenReturn( Contents.builder()
 				.chapters( List.of( Chapter.builder()

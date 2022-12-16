@@ -31,7 +31,7 @@ public class ConsumerDemonstratorTest {
 
 	@Test
 	public void shouldPrintSomeOutputToConsole() {
-		consumerDemonstrator.demoFunction( ImmutableList.of( "Some interesting sentence" ) );
+		consumerDemonstrator.runExampleFor( ImmutableList.of( "Some interesting sentence" ) );
 
 		assertThat( outputStreamCaptor.toString().trim() ).isEqualTo( "Some interesting sentence" );
 	}

@@ -47,7 +47,7 @@ public class FunctionalInterfaceTeacher {
 
 		return TaskResult.builder()
 				.type( task.getTaskType() )
-				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
+				.value( runTaskBasedUponType( task.getTaskType(), task.getParameters() ) )
 				.sourceCode(
 						example
 						.getSourceCode() )
@@ -56,20 +56,20 @@ public class FunctionalInterfaceTeacher {
 				.build();
 	}
 
-	public String demoFunction( final TaskType type, final List<String> input ) {
+	public String runTaskBasedUponType( final TaskType type, final List<String> input ) {
 
 		switch ( type ) {
 		case FUNCTION:
-			return functionDemonstrator.demoFunction( input );
+			return functionDemonstrator.runExampleFor( input );
 		case CONSUMER:
-			return consumerDemonstrator.demoFunction( input );
+			return consumerDemonstrator.runExampleFor( input );
 		case PREDICATE:
-			return String.valueOf( predicateDemonstrator.demoFunction( input ) );
+			return String.valueOf( predicateDemonstrator.runExampleFor( input ) );
 		case PREDICATE2:
-			return String.valueOf( predicateDemonstrator.demoFunction( input.get( 0 ),
+			return String.valueOf( predicateDemonstrator.runExampleFor( input.get( 0 ),
 					input.subList( 1, input.size() ) ) );
 		case SUPPLIER:
-			return supplierDemonstrator.demoFunction();
+			return supplierDemonstrator.runExampleFor();
 		default:
 			return TYPE_NOT_RECOGNISED;
 		}

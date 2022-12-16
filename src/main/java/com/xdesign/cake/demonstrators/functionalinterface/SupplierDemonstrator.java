@@ -19,7 +19,7 @@ public class SupplierDemonstrator extends Demonstrator {
 			slashCommand = "/learnjava/functionalinterfaces",
 			slashParameters = "SUPPLIER")
 
-	public String demoFunction() {
+	public String runExampleFor() {
 		final Supplier<String> dateSupplier = () -> LocalDate.now()
 				.format( DateTimeFormatter.ISO_LOCAL_DATE );
 

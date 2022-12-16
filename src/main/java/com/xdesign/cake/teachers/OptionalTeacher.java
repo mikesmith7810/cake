@@ -33,7 +33,7 @@ public class OptionalTeacher {
 
 		return TaskResult.builder()
 				.type( task.getTaskType() )
-				.value( demoFunction( task.getTaskType(), task.getParameters() ) )
+				.value( runTaskBasedUponType( task.getTaskType(), task.getParameters() ) )
 				.sourceCode(
 						example
 						.getSourceCode() )
@@ -42,11 +42,11 @@ public class OptionalTeacher {
 				.build();
 	}
 
-	public String demoFunction( final TaskType type, final List<String> input ) {
+	public String runTaskBasedUponType( final TaskType type, final List<String> input ) {
 
 		switch ( type ) {
 		case CREATION:
-			return creationDemonstrator.demoFunction( input ).get();
+			return creationDemonstrator.runExampleFor( input ).get();
 		default:
 			return TYPE_NOT_RECOGNISED;
 		}

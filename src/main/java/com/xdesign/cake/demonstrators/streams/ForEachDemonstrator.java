@@ -18,7 +18,7 @@ public class ForEachDemonstrator extends Demonstrator {
 			slashCommand = "/learnjava/streams",
 			slashParameters = "FOREACH word1 word2")
 
-	public String demoFunction( final List<String> input ) {
+	public String runExampleFor( final List<String> input ) {
 
 		input.stream().forEach( word -> System.out.println( word ) );
 

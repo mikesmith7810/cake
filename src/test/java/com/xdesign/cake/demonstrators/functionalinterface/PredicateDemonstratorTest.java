@@ -26,7 +26,7 @@ public class PredicateDemonstratorTest {
 	@Test
 	public void shouldCheckIfWordsStartsWithS() {
 
-		final boolean result = predicateDemonstrator.demoFunction( ImmutableList.of( "Super" ) );
+		final boolean result = predicateDemonstrator.runExampleFor( ImmutableList.of( "super" ) );
 
 		assertThat( result ).isTrue();
 	}
@@ -36,7 +36,7 @@ public class PredicateDemonstratorTest {
 
 		final List<String> words = ImmutableList.of( "Song", "Stack", "Car", "Engine", "Strum" );
 
-		final List<String> filteredWords = predicateDemonstrator.demoFunction( "S", words );
+		final List<String> filteredWords = predicateDemonstrator.runExampleFor( "S", words );
 
 		assertThat( filteredWords ).hasSize( 3 );
 		assertThat( filteredWords ).filteredOn( word -> word.startsWith( "S" ) );
